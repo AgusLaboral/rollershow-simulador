@@ -1,0 +1,1352 @@
+<!DOCTYPE html><html lang="es-AR"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><!-- Maqueta en desarrollo: evita que el navegador (sobre todo en mobile)
+         sirva una versión vieja cacheada mientras se itera. --><meta http-equiv="Cache-Control" content="no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://cdn.rollershow.com.ar"><link rel="preconnect" href="https://assets.rollershow.com.ar"><link rel="dns-prefetch" href="https://www.rollershow.com.ar"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- Tipografía: el sitio usa Geist + Instrument Serif (masterplan §26);
+         las landings con bareLayout traen su propio sistema (Bricolage + Manrope).
+         Se carga solo el set que la página usa — un único <link>, no @import. --><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"><title>Simulador de cortinas RollerShow: probá cómo queda antes de comprar</title><meta name="description" content="Subí la foto de tu ventana, elegí la tela y en segundos ves cómo van a quedar tus cortinas. Sin costo, sin compromiso."><link rel="canonical" href="https://www.rollershow.com.ar/simulador"><meta property="og:type" content="website"><meta property="og:title" content="Simulador de cortinas RollerShow: probá cómo queda antes de comprar"><meta property="og:description" content="Subí la foto de tu ventana, elegí la tela y en segundos ves cómo van a quedar tus cortinas. Sin costo, sin compromiso."><meta property="og:url" content="https://www.rollershow.com.ar/simulador"><meta property="og:image" content="https://www.rollershow.com.ar/assets/og-default.jpg"><meta property="og:site_name" content="RollerShow"><meta property="og:locale" content="es_AR"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Simulador de cortinas RollerShow: probá cómo queda antes de comprar"><meta name="twitter:description" content="Subí la foto de tu ventana, elegí la tela y en segundos ves cómo van a quedar tus cortinas. Sin costo, sin compromiso."><meta name="twitter:image" content="https://www.rollershow.com.ar/assets/og-default.jpg"><!-- Alpine.js para interactividad puntual (mega-menú, modales, before/after, filtros). --><script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script><!-- Preloads / hints específicos de cada página (ej. imagen LCP de fondo). --><link rel="stylesheet" href="/rollershow-simulador/_astro/_familia_.BknDqd6P.css">
+<link rel="stylesheet" href="/rollershow-simulador/_astro/simulador.C_X_xNvE.css"></head> <body class="min-h-screen flex flex-col bg-bg ">     <div class="sim-root" x-data="simulador()" data-api-base="https://www.rollershow.com.ar" data-default-familia="roller" data-default-funcion="opaca" data-funciones-por-familia="{&#34;roller&#34;:[&#34;opaca&#34;,&#34;transparente&#34;,&#34;translucida&#34;],&#34;tradicionales&#34;:[&#34;opaca&#34;,&#34;transparente&#34;,&#34;translucida&#34;],&#34;verticales&#34;:[&#34;opaca&#34;,&#34;transparente&#34;,&#34;translucida&#34;],&#34;duo&#34;:[&#34;translucida&#34;],&#34;horizontales&#34;:[&#34;opaca&#34;]}" data-product-images="[&#34;https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-roller-thumb-v2-6a4ea28d26729.webp?width=640&#38;format=auto&#38;quality=76&#34;,&#34;https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-tradicionales-thumb-v2-6a4ea28e3cd3d.webp?width=640&#38;format=auto&#38;quality=76&#34;,&#34;https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-verticales-thumb-v2-6a4ea28db4e7c.webp?width=640&#38;format=auto&#38;quality=76&#34;,&#34;https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-duo-thumb-v2-6a4ea28f40ed4.webp?width=640&#38;format=auto&#38;quality=76&#34;,&#34;https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-horizontales-thumb-v2-6a4ea28eb4328.webp?width=640&#38;format=auto&#38;quality=76&#34;]" data-telas="[{&#34;id&#34;:1783,&#34;name&#34;:&#34;Black Out Pesada Beige&#34;,&#34;color&#34;:&#34;Beige&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Beige&#34;,&#34;func_label&#34;:&#34;Black Out&#34;},{&#34;id&#34;:1746,&#34;name&#34;:&#34;Black Out Liviana Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/1746-black-out-liviana-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Blanco&#34;,&#34;func_label&#34;:&#34;Black Out&#34;},{&#34;id&#34;:1600,&#34;name&#34;:&#34;Black Out TrueColors Celeste&#34;,&#34;color&#34;:&#34;Celeste&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-celeste.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Celeste&#34;,&#34;func_label&#34;:&#34;Black Out&#34;},{&#34;id&#34;:1748,&#34;name&#34;:&#34;Black Out Liviana Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-liviana-gris.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Gris&#34;,&#34;func_label&#34;:&#34;Black Out&#34;},{&#34;id&#34;:1750,&#34;name&#34;:&#34;Black Out Liviana Natural&#34;,&#34;color&#34;:&#34;Natural&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-liviana-natural.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Natural&#34;,&#34;func_label&#34;:&#34;Black Out&#34;},{&#34;id&#34;:1601,&#34;name&#34;:&#34;Black Out TrueColors Rosa &#34;,&#34;color&#34;:&#34;Rosa &#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-truecolors-truecolors-rosa.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Rosa &#34;,&#34;func_label&#34;:&#34;Black Out&#34;},{&#34;id&#34;:1806,&#34;name&#34;:&#34;Black Out Pesada Negro&#34;,&#34;color&#34;:&#34;Negro&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-pesada-negro.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Negro&#34;,&#34;func_label&#34;:&#34;Black Out&#34;},{&#34;id&#34;:1616,&#34;name&#34;:&#34;Decorativa Night Indigo&#34;,&#34;color&#34;:&#34;Indigo&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/decorativa-night-mermet-designers-collection-indigo.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Indigo&#34;,&#34;func_label&#34;:&#34;Decorativa&#34;},{&#34;id&#34;:1617,&#34;name&#34;:&#34;Decorativa Night Bronce&#34;,&#34;color&#34;:&#34;Bronce&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/decorativa-night-mermet-designers-collection-bronce.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Marrón&#34;,&#34;func_label&#34;:&#34;Decorativa&#34;},{&#34;id&#34;:1585,&#34;name&#34;:&#34;Decorativa Canvas Crema&#34;,&#34;color&#34;:&#34;Crema&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/decorativa-canvas-mermet-designers-collection-crema.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Natural&#34;,&#34;func_label&#34;:&#34;Decorativa&#34;},{&#34;id&#34;:1587,&#34;name&#34;:&#34;Decorativa Seda Negro&#34;,&#34;color&#34;:&#34;Negro&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/decorativa-seda-mermet-designers-collection-negro.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Negro&#34;,&#34;func_label&#34;:&#34;Decorativa&#34;},{&#34;id&#34;:1756,&#34;name&#34;:&#34;Sun Screen 5% Liviana Beige&#34;,&#34;color&#34;:&#34;Beige&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Beige&#34;,&#34;func_label&#34;:&#34;Sun Screen&#34;},{&#34;id&#34;:1755,&#34;name&#34;:&#34;Sun Screen 5% Liviana Blanco cálido&#34;,&#34;color&#34;:&#34;Blanco cálido&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/1755-sun-screen-5-liviana-blanco-calido.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Blanco&#34;,&#34;func_label&#34;:&#34;Sun Screen&#34;},{&#34;id&#34;:1757,&#34;name&#34;:&#34;Sun Screen 5% Liviana Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-liviana-gris-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Gris&#34;,&#34;func_label&#34;:&#34;Sun Screen&#34;},{&#34;id&#34;:1835,&#34;name&#34;:&#34;Sun Screen 5% Pesada Beige Blanco&#34;,&#34;color&#34;:&#34;Beige Blanco&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-5-pesada-beige-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Natural&#34;,&#34;func_label&#34;:&#34;Sun Screen&#34;},{&#34;id&#34;:1696,&#34;name&#34;:&#34;Sun Screen Tundra 5% Marrón &#34;,&#34;color&#34;:&#34;Marrón &#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-tundra-5-mermet-marron.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Marrón&#34;,&#34;func_label&#34;:&#34;Sun Screen&#34;},{&#34;id&#34;:1654,&#34;name&#34;:&#34;Sun Screen Mermet 5% Linen Negro&#34;,&#34;color&#34;:&#34;Negro&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;roller&#34;,&#34;familia_label&#34;:&#34;Roller&#34;,&#34;familia_label_display&#34;:&#34;Roller&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/sun-screen-mermet-5-linen-mermet-designers-collection-negro.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Negro&#34;,&#34;func_label&#34;:&#34;Sun Screen&#34;},{&#34;id&#34;:2016,&#34;name&#34;:&#34;Black Out Jazmín Beige&#34;,&#34;color&#34;:&#34;Beige&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-jazmin-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Jazmín Beige&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:2029,&#34;name&#34;:&#34;Black Out Jazmín Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-jazmin-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Jazmín Blanco&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:2018,&#34;name&#34;:&#34;Black Out Jazmín Gris Claro&#34;,&#34;color&#34;:&#34;Gris Claro&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-jazmin-gris-claro.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Jazmín Gris&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:2011,&#34;name&#34;:&#34;Black Out Lima Beige&#34;,&#34;color&#34;:&#34;Beige&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-lima-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Lima Beige&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:2009,&#34;name&#34;:&#34;Black Out Lima Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-lima-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Lima Blanco&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:2010,&#34;name&#34;:&#34;Black Out Lima Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-lima-gris.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Lima Gris&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:2014,&#34;name&#34;:&#34;Black Out Roble Beige&#34;,&#34;color&#34;:&#34;Beige&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-roble-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Roble Beige&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:2028,&#34;name&#34;:&#34;Black Out Roble Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-roble-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Roble Blanco&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:2013,&#34;name&#34;:&#34;Black Out Roble Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/black-out-roble-gris.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Roble Gris&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:2007,&#34;name&#34;:&#34;Gasa Cala Natural&#34;,&#34;color&#34;:&#34;Natural&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/gasa-cala-natural.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Cala Natural&#34;,&#34;func_label&#34;:&#34;Caída decorativa&#34;},{&#34;id&#34;:2008,&#34;name&#34;:&#34;Gasa Girasol Natural&#34;,&#34;color&#34;:&#34;Natural&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/gasa-girasol-natural.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Girasol Natural&#34;,&#34;func_label&#34;:&#34;Caída decorativa&#34;},{&#34;id&#34;:2004,&#34;name&#34;:&#34;Tusor Alhelí Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/tusor-alheli-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Tusor Alhelí Blanco&#34;,&#34;func_label&#34;:&#34;Caída decorativa&#34;},{&#34;id&#34;:2005,&#34;name&#34;:&#34;Tusor Alhelí Off White&#34;,&#34;color&#34;:&#34;Off White&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/tusor-alheli-off-white.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Tusor Alhelí Natural&#34;,&#34;func_label&#34;:&#34;Caída decorativa&#34;},{&#34;id&#34;:2002,&#34;name&#34;:&#34;Voile Tulipán Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/voile-tulipan-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Voile Tulipán Blanco&#34;,&#34;func_label&#34;:&#34;Caída decorativa&#34;},{&#34;id&#34;:2003,&#34;name&#34;:&#34;Tusor Alhelí Gris Perla&#34;,&#34;color&#34;:&#34;Gris Perla&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/tusor-alheli-gris-perla.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Tusor Alhelí Gris&#34;,&#34;func_label&#34;:&#34;Caída decorativa&#34;},{&#34;id&#34;:2020,&#34;name&#34;:&#34;Gasa Alamo Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/gasa-alamo-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Alamo Blanco&#34;,&#34;func_label&#34;:&#34;Filtrar luz&#34;},{&#34;id&#34;:2019,&#34;name&#34;:&#34;Gasa Ceibo Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/gasa-ceibo-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Ceibo Blanco&#34;,&#34;func_label&#34;:&#34;Filtrar luz&#34;},{&#34;id&#34;:1996,&#34;name&#34;:&#34;Gasa Rústica Lavanda Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/gasa-rustica-lavanda-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Rústica Lavanda Blanco&#34;,&#34;func_label&#34;:&#34;Filtrar luz&#34;},{&#34;id&#34;:2000,&#34;name&#34;:&#34;Gasa Rústica Margarita Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/gasa-rustica-margarita-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Rústica Margarita Blanco&#34;,&#34;func_label&#34;:&#34;Filtrar luz&#34;},{&#34;id&#34;:2001,&#34;name&#34;:&#34;Gasa Rústica Margarita Plata&#34;,&#34;color&#34;:&#34;Plata&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/gasa-rustica-margarita-plata.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Rústica Margarita Gris&#34;,&#34;func_label&#34;:&#34;Filtrar luz&#34;},{&#34;id&#34;:1997,&#34;name&#34;:&#34;Gasa Rústica Lavanda Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/gasa-rustica-lavanda-gris.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Rústica Lavanda Gris&#34;,&#34;func_label&#34;:&#34;Filtrar luz&#34;},{&#34;id&#34;:1999,&#34;name&#34;:&#34;Gasa Rústica Margarita Arena&#34;,&#34;color&#34;:&#34;Arena&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;tradicionales&#34;,&#34;familia_label&#34;:&#34;Tradicionales&#34;,&#34;familia_label_display&#34;:&#34;Tradicionales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/gasa-rustica-margarita-arena.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Rústica Margarita Marrón&#34;,&#34;func_label&#34;:&#34;Filtrar luz&#34;},{&#34;id&#34;:1467,&#34;name&#34;:&#34;Black Out Intermedia Blanco&#34;,&#34;color&#34;:&#34;Blanco&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/1467-black-out-intermedia-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Blanco&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:1104,&#34;name&#34;:&#34;Black Out Pesada Natural&#34;,&#34;color&#34;:&#34;Natural&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/1104-black-out-pesada-natural.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Natural&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:1102,&#34;name&#34;:&#34;Black Out Pesada Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/1102-black-out-pesada-gris.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Gris&#34;,&#34;func_label&#34;:&#34;Oscurecer&#34;},{&#34;id&#34;:1455,&#34;name&#34;:&#34;Stream Beige claro&#34;,&#34;color&#34;:&#34;Beige claro&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/stream-solarcool-beige-claro.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Beige&#34;,&#34;func_label&#34;:&#34;Suavizar luz&#34;},{&#34;id&#34;:1462,&#34;name&#34;:&#34;Lake Blanco &#34;,&#34;color&#34;:&#34;Blanco &#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/lake-solarcool-blanco.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Blanco&#34;,&#34;func_label&#34;:&#34;Suavizar luz&#34;},{&#34;id&#34;:715,&#34;name&#34;:&#34;Velvet CELESTE&#34;,&#34;color&#34;:&#34;CELESTE&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/velvet-solarcool-celeste.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;CELESTE&#34;,&#34;func_label&#34;:&#34;Suavizar luz&#34;},{&#34;id&#34;:1461,&#34;name&#34;:&#34;Lake Gris perla&#34;,&#34;color&#34;:&#34;Gris perla&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/lake-solarcool-gris-perla.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Gris&#34;,&#34;func_label&#34;:&#34;Suavizar luz&#34;},{&#34;id&#34;:753,&#34;name&#34;:&#34;Canvas Crema&#34;,&#34;color&#34;:&#34;Crema&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/canvas-solarcool-crema.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Natural&#34;,&#34;func_label&#34;:&#34;Suavizar luz&#34;},{&#34;id&#34;:714,&#34;name&#34;:&#34;Velvet BORDO&#34;,&#34;color&#34;:&#34;BORDO&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/velvet-solarcool-bordo.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;BORDO&#34;,&#34;func_label&#34;:&#34;Suavizar luz&#34;},{&#34;id&#34;:712,&#34;name&#34;:&#34;Velvet LADRILLO&#34;,&#34;color&#34;:&#34;LADRILLO&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/velvet-solarcool-ladrillo.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;LADRILLO&#34;,&#34;func_label&#34;:&#34;Suavizar luz&#34;},{&#34;id&#34;:2110,&#34;name&#34;:&#34;Sun Screen Liviana Beige&#34;,&#34;color&#34;:&#34;Beige&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/2110-sun-screen-5-liviana-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Beige&#34;,&#34;func_label&#34;:&#34;Filtrar sol&#34;},{&#34;id&#34;:2109,&#34;name&#34;:&#34;Sun Screen Liviana Blanco Calido&#34;,&#34;color&#34;:&#34;Blanco Calido&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/2109-sun-screen-5-liviana-blanco-calido.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Blanco&#34;,&#34;func_label&#34;:&#34;Filtrar sol&#34;},{&#34;id&#34;:2111,&#34;name&#34;:&#34;Sun Screen Liviana Gris&#34;,&#34;color&#34;:&#34;Gris&#34;,&#34;funcion&#34;:&#34;transparente&#34;,&#34;familia_slug&#34;:&#34;verticales&#34;,&#34;familia_label&#34;:&#34;Verticales&#34;,&#34;familia_label_display&#34;:&#34;Verticales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/2111-sun-screen-5-liviana-gris-beige.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Gris&#34;,&#34;func_label&#34;:&#34;Filtrar sol&#34;},{&#34;id&#34;:1112,&#34;name&#34;:&#34;Leaf Sand&#34;,&#34;color&#34;:&#34;Sand&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;duo&#34;,&#34;familia_label&#34;:&#34;Dúo&#34;,&#34;familia_label_display&#34;:&#34;Dúo&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/leaf-segmentos-translucidos-y-opacos-sand.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Beige&#34;,&#34;func_label&#34;:&#34;Graduar privacidad&#34;},{&#34;id&#34;:571,&#34;name&#34;:&#34;Leaf White&#34;,&#34;color&#34;:&#34;White&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;duo&#34;,&#34;familia_label&#34;:&#34;Dúo&#34;,&#34;familia_label_display&#34;:&#34;Dúo&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/leaf-segmentos-translucidos-y-opacos-white.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Blanco&#34;,&#34;func_label&#34;:&#34;Graduar privacidad&#34;},{&#34;id&#34;:1113,&#34;name&#34;:&#34;Leaf Cinnamon&#34;,&#34;color&#34;:&#34;Cinnamon&#34;,&#34;funcion&#34;:&#34;translucida&#34;,&#34;familia_slug&#34;:&#34;duo&#34;,&#34;familia_label&#34;:&#34;Dúo&#34;,&#34;familia_label_display&#34;:&#34;Dúo&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/leaf-segmentos-translucidos-y-opacos-cinnamon.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Marrón&#34;,&#34;func_label&#34;:&#34;Graduar privacidad&#34;},{&#34;id&#34;:995,&#34;name&#34;:&#34;Solid 25mm Off White&#34;,&#34;color&#34;:&#34;Off White&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;horizontales&#34;,&#34;familia_label&#34;:&#34;Horizontales&#34;,&#34;familia_label_display&#34;:&#34;Horizontales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/solid-25mm-laminas-graduables-off-white.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Blanco&#34;,&#34;func_label&#34;:&#34;Regular luz&#34;},{&#34;id&#34;:994,&#34;name&#34;:&#34;Solid 25mm Magnolia&#34;,&#34;color&#34;:&#34;Magnolia&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;horizontales&#34;,&#34;familia_label&#34;:&#34;Horizontales&#34;,&#34;familia_label_display&#34;:&#34;Horizontales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/solid-25mm-laminas-graduables-magnolia.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Natural&#34;,&#34;func_label&#34;:&#34;Regular luz&#34;},{&#34;id&#34;:623,&#34;name&#34;:&#34;Solid 25mm Natural Alu&#34;,&#34;color&#34;:&#34;Natural Alu&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;horizontales&#34;,&#34;familia_label&#34;:&#34;Horizontales&#34;,&#34;familia_label_display&#34;:&#34;Horizontales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/solid-25mm-laminas-graduables-natural-alu.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Gris&#34;,&#34;func_label&#34;:&#34;Regular luz&#34;},{&#34;id&#34;:993,&#34;name&#34;:&#34;Solid 25mm Congo Brown&#34;,&#34;color&#34;:&#34;Congo Brown&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;horizontales&#34;,&#34;familia_label&#34;:&#34;Horizontales&#34;,&#34;familia_label_display&#34;:&#34;Horizontales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/solid-25mm-laminas-graduables-congo-brown.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Marrón&#34;,&#34;func_label&#34;:&#34;Regular luz&#34;},{&#34;id&#34;:992,&#34;name&#34;:&#34;Solid 25mm Black&#34;,&#34;color&#34;:&#34;Black&#34;,&#34;funcion&#34;:&#34;opaca&#34;,&#34;familia_slug&#34;:&#34;horizontales&#34;,&#34;familia_label&#34;:&#34;Horizontales&#34;,&#34;familia_label_display&#34;:&#34;Horizontales&#34;,&#34;img_thumb&#34;:&#34;https://cdn.rollershow.com.ar/telas/solid-25mm-laminas-graduables-black.chica.jpg?width=400&#38;auto=webp&#34;,&#34;swatch_label&#34;:&#34;Negro&#34;,&#34;func_label&#34;:&#34;Regular luz&#34;}]" :class="{ 'sim-inflow': step !== 1, 'sim-is-generating': step === 4 && generating, 'has-saved-sims': savedSims.length > 0 }"> <header class="site-header" id="siteHeader" data-scrolled="false"> <div class="container"> <div class="site-header__inner"> <a href="/" class="brand" aria-label="RollerShow, inicio">  <img class="brand-logo" src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_b.svg" alt="RollerShow" width="600" height="52"> </a> <div class="header-actions"> <a href="tel:08002204010" class="phone-pill">0800-220-4010, 24 hs</a> <a href="https://wa.me/5491140813223?text=Hola!%20Quiero%20cotizar%20mis%20cortinas%20a%20medida" class="phone-pill phone-pill--wa" aria-label="WhatsApp" target="_blank" rel="noopener"> <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="14" height="14"><path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.08.55 4.11 1.6 5.9L0 24l6.42-1.7a11.83 11.83 0 005.62 1.43h.01c6.54 0 11.84-5.3 11.84-11.84 0-3.16-1.23-6.13-3.37-8.41z"></path></svg> <span>WhatsApp</span> </a> </div> </div> </div> </header> <!-- ============================================================ HERO ============================================================ --> <main> <section class="hero container" id="cotizador" aria-labelledby="sim-title" :data-sim-step="step" :data-sim-funcion="step === 2 ? (selectedFuncion || '') : ''"> <!-- Idea 1 (banco de ideas, F3): al elegir función el ambiente del módulo responde
+         como respondería la luz real — no es un cambio de tema, es la demostración física
+         del efecto. Ver CSS .hero__funcion-light. --> <div class="hero__funcion-light" aria-hidden="true"></div> <div class="hero__grid"> <!-- Copy izquierda --> <div class="hero__copy"> <h1 class="hero__title h-display" id="sim-title">
+Probá la cortina en tu ventana <span class="hero__title-soft">antes de comprar.</span> </h1> <!-- Onboarding desktop (tipo herramienta): explica el valor + los 3 pasos.
+             Solo aparece en desktop; en mobile el simulador es el protagonista directo. --> <p class="hero__sub">Subí una foto de tu ventana y en segundos la ves con la cortina puesta. Si te gusta, pedís el precio exacto por WhatsApp.</p> <ol class="hero__steps" aria-label="Cómo funciona"> <li class="hero__step"> <span class="hero__step-ico" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg> </span> <span class="hero__step-txt"><b>Subí tu foto</b>De la galería o sacala en el momento</span> </li> <li class="hero__step"> <span class="hero__step-ico" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 15l5-5 5 5"></path><path d="M14 14l3-3 4 4"></path><circle cx="8" cy="8" r="1.4"></circle></svg> </span> <span class="hero__step-txt"><b>Elegí el tipo</b>Roller, vertical, tradicional, horizontal o dúo</span> </li> <li class="hero__step"> <span class="hero__step-ico" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path><circle cx="12" cy="12" r="3"></circle></svg> </span> <span class="hero__step-txt"><b>Mirá y pedí el precio</b>La ves puesta y te pasamos el costo exacto</span> </li> </ol> </div> <!-- Simulador — protagonista del hero --> <div class="quoter" id="simulador" aria-label="Simulador de cortinas" role="region"> <!-- F3.2 (plan): transición roller entre pasos — receta "roller de transición"
+             del manual de marca (04) comprimida a --dur-step-scene (480ms, "cambio entre
+             pasos"; la receta completa de 1200ms es para escenas grandes). Wrapper propio
+             con overflow:hidden SOLO para esto: no puede ir en .quoter (rompería el
+             full-bleed con márgenes negativos del .sim-slider en mobile). Vive fuera de
+             cualquier .sim-step para no tocar el contenedor del CTA position:fixed. --> <div class="sim-step-roller-clip" aria-hidden="true"> <div class="sim-step-roller" :class="{ 'is-active': stepRollerOn }"></div> </div> <!-- PASO 1 — Subir foto (el upload ES el protagonista) --> <div x-show="step === 1" x-cloak class="sim-step"> <!-- Galería navegable: cada simulación es clickeable → volvés a verla y seguís
+               el funnel (descargar/compartir/precio). El historial nunca se pierde. --> <div class="sim-saved" x-show="savedSims.length" x-cloak> <p class="sim-saved__title">Mis simulaciones (<span x-text="savedSims.length"></span>) <span class="sim-saved__hint">tocá una para verla</span></p> <div class="sim-saved__row"> <template x-for="(s, i) in savedSims" :key="i"> <button type="button" class="sim-saved__item" @click="openSaved(i)" :aria-label="'Ver simulación ' + (i + 1) + ' (' + s.telaColor + ')'"> <img :src="s.photoUrl" :alt="'Ventana ' + (i + 1)"> <span class="sim-saved__see" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path><circle cx="12" cy="12" r="3"></circle></svg> </span> </button> </template> </div> </div> <!-- Si ya simuló ventanas, el pedido de precio pasa arriba de "otra ventana": conversión antes que exploración. --> <button type="button" class="btn--hero sim-saved__price" x-show="savedSims.length" x-cloak @click="step = 5; formStep = 1"> <span>Pedí precio exacto</span> <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> <!-- Upload tecnico: dos acciones, drag&drop en desktop. --> <div class="sim-upload" :class="{ 'is-over': isDragOver, 'has-saved': savedSims.length }" @dragover.prevent="isDragOver = true" @dragleave="isDragOver = false" @drop.prevent="isDragOver = false; onFileDrop($event)"> <span class="sim-upload__viewport" aria-hidden="true">  <img class="sim-upload__window" src="https://cdn.rollershow.com.ar/web/simulador/antes-corregidos/rs-simulador-before-dormitorio-896x1200-6a4e5a884b241.png?width=620&auto=webp&quality=78" alt="" loading="lazy" decoding="async" fetchpriority="auto" width="620" height="830"><img class="sim-upload__window" src="https://cdn.rollershow.com.ar/web/simulador/antes-corregidos/rs-simulador-before-living-896x1195-6a4e5a894a1ad.png?width=620&auto=webp&quality=78" alt="" loading="lazy" decoding="async" fetchpriority="low" width="620" height="830"><img class="sim-upload__window" src="https://cdn.rollershow.com.ar/web/simulador/antes-corregidos/rs-simulador-before-comedor-1062x992-6a4e5a8a4f88d.png?width=620&auto=webp&quality=78" alt="" loading="lazy" decoding="async" fetchpriority="low" width="620" height="830"><img class="sim-upload__window" src="https://cdn.rollershow.com.ar/web/simulador/antes-corregidos/rs-simulador-before-oficina-992x1068-6a4e5a8b416dd.png?width=620&auto=webp&quality=78" alt="" loading="lazy" decoding="async" fetchpriority="low" width="620" height="830"> </span>  <div class="sim-upload__demo" aria-hidden="true"> <div class="sim-upload__demo-state"> <img class="sim-upload__demo-img" src="https://cdn.rollershow.com.ar/web/simulador/antes-corregidos/rs-simulador-before-dormitorio-896x1200-6a4e5a884b241.png?width=620&auto=webp&quality=78" alt="" width="620" height="830" loading="eager" fetchpriority="high" decoding="async"> <span class="sim-upload__demo-cap">Foto original</span> </div> <div class="sim-upload__demo-state"> <img class="sim-upload__demo-img" src="https://cdn.rollershow.com.ar/web/simulador/casos/rs-simulador-caso-dormitorio-6a5f837dc5106.jpg?width=620&auto=webp&quality=78" alt="" width="620" height="830" loading="lazy" decoding="async"> <span class="sim-upload__demo-cap">Simulada con IA</span> </div> <div class="sim-upload__demo-state"> <img class="sim-upload__demo-img" src="https://cdn.rollershow.com.ar/web/simulador/casos/rs-simulador-caso-living-6a5f837ea16a7.jpg?width=620&auto=webp&quality=78" alt="" width="620" height="827" loading="lazy" decoding="async"> <span class="sim-upload__demo-cap">Simulada con IA</span> </div> </div> <p class="sim-upload__title" :class="{ 'sim-upload__title--dup': !savedSims.length }" x-text="savedSims.length ? 'Subí otra ventana' : 'Mirá tu ventana con la cortina puesta'"></p> <p class="sim-upload__sub">Sacá o subí una foto y en segundos la ves puesta. Después pedís el precio exacto.</p> <div class="sim-upload__actions"> <button type="button" class="sim-upload__btn" :class="{ 'sim-upload__btn--saved-secondary': savedSims.length }" @click="openPicker('galInput')"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg> <span x-text="savedSims.length ? 'Subir otra foto' : 'Subir una foto'"></span> </button> <button type="button" class="sim-upload__btn sim-upload__btn--ghost" x-show="!savedSims.length" x-cloak @click="openPicker('camInput')"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+Sacar foto ahora
+</button> </div> <input x-ref="camInput" type="file" accept="image/*" capture="environment" hidden @change="onFileChange"> <input x-ref="galInput" type="file" accept="image/*" hidden @change="onFileChange"> </div> </div> <!-- PASO 2 — Elegir tela (tipo → color) --> <div x-show="step === 2" x-cloak class="sim-step sim-step--pick" :class="{ 'has-fixed-cta': selectedFuncion, 'has-family-selected': selectedFamilia }"> <div class="sim-step-head sim-step-head--pick"> <div class="sim-step-head__text"> <h2>Elegí tu cortina</h2> </div> <button type="button" class="sim-photo-chip" aria-label="Cambiar foto de tu ventana" @click="step = 1; photoUrl = null; selectedFamilia = null; selectedFuncion = null; selectedTela = null; selectedTelaId = null"> <img :src="photoUrl" alt=""> <span class="sim-photo-chip__label">Tu ventana</span> <span class="sim-photo-chip__change">Cambiar</span> </button> </div>   <div class="sim-block" data-flow-step="familia"> <p class="sim-sublabel">Tipo de cortina</p> <div class="sim-product-rail" role="group" aria-label="Tipo de cortina"> <button type="button" class="sim-product-card" @click="selectFamilia('roller')" :class="{ 'is-active': selectedFamilia === 'roller' }" :aria-pressed="selectedFamilia === 'roller'" aria-label="Roller: Se enrolla arriba"> <span class="sim-product-card__media"> <img src="https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-roller-thumb-v2-6a4ea28d26729.webp?width=640&format=auto&quality=76" alt="Cortina Roller" loading="lazy" fetchpriority="auto" decoding="async" width="640" height="480"> </span> <span class="sim-product-card__label"> <b> <span class="sim-product-card__name-full">Roller</span> <span class="sim-product-card__name-short">Roller</span> </b> <small>Se enrolla arriba</small> </span> </button><button type="button" class="sim-product-card" @click="selectFamilia('tradicionales')" :class="{ 'is-active': selectedFamilia === 'tradicionales' }" :aria-pressed="selectedFamilia === 'tradicionales'" aria-label="Tradicionales: Tela con barral"> <span class="sim-product-card__media"> <img src="https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-tradicionales-thumb-v2-6a4ea28e3cd3d.webp?width=640&format=auto&quality=76" alt="Cortina Tradicionales" loading="lazy" fetchpriority="auto" decoding="async" width="640" height="480"> </span> <span class="sim-product-card__label"> <b> <span class="sim-product-card__name-full">Tradicionales</span> <span class="sim-product-card__name-short">Trad.</span> </b> <small>Tela con barral</small> </span> </button><button type="button" class="sim-product-card" @click="selectFamilia('verticales')" :class="{ 'is-active': selectedFamilia === 'verticales' }" :aria-pressed="selectedFamilia === 'verticales'" aria-label="Verticales: Bandas al costado"> <span class="sim-product-card__media"> <img src="https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-verticales-thumb-v2-6a4ea28db4e7c.webp?width=640&format=auto&quality=76" alt="Cortina Verticales" loading="lazy" fetchpriority="auto" decoding="async" width="640" height="480"> </span> <span class="sim-product-card__label"> <b> <span class="sim-product-card__name-full">Verticales</span> <span class="sim-product-card__name-short">Vertical</span> </b> <small>Bandas al costado</small> </span> </button><button type="button" class="sim-product-card" @click="selectFamilia('duo')" :class="{ 'is-active': selectedFamilia === 'duo' }" :aria-pressed="selectedFamilia === 'duo'" aria-label="Dúo: Bandas alternadas"> <span class="sim-product-card__media"> <img src="https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-duo-thumb-v2-6a4ea28f40ed4.webp?width=640&format=auto&quality=76" alt="Cortina Dúo" loading="lazy" fetchpriority="auto" decoding="async" width="640" height="480"> </span> <span class="sim-product-card__label"> <b> <span class="sim-product-card__name-full">Dúo</span> <span class="sim-product-card__name-short">Dúo</span> </b> <small>Bandas alternadas</small> </span> </button><button type="button" class="sim-product-card" @click="selectFamilia('horizontales')" :class="{ 'is-active': selectedFamilia === 'horizontales' }" :aria-pressed="selectedFamilia === 'horizontales'" aria-label="Horizontales: Láminas regulables"> <span class="sim-product-card__media"> <img src="https://cdn.rollershow.com.ar/web/simulador/product-thumbs/simulador-horizontales-thumb-v2-6a4ea28eb4328.webp?width=640&format=auto&quality=76" alt="Cortina Horizontales" loading="lazy" fetchpriority="auto" decoding="async" width="640" height="480"> </span> <span class="sim-product-card__label"> <b> <span class="sim-product-card__name-full">Horizontales</span> <span class="sim-product-card__name-short">Horiz.</span> </b> <small>Láminas regulables</small> </span> </button> </div> </div>  <div class="sim-block" data-flow-step="funcion" x-show="(funcionesPorFamilia[selectedFamilia] || []).length > 1" x-cloak> <p class="sim-sublabel">Qué necesitás resolver</p> <div class="sim-fabric-grid" role="group" aria-label="Tipo de tela"> <button type="button" class="sim-fabric-card sim-fabric-card--roller sim-fabric-card--opaca " x-show="selectedFamilia === 'roller'" @click="selectFuncion('opaca')" :class="{ 'is-active': selectedFuncion === 'opaca' }" :aria-pressed="selectedFuncion === 'opaca'" aria-label="Black Out: Oscuridad total"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/web/landing/blackout-still-6a077cfce8dda.png?width=440&format=auto&quality=62" alt="Cortina Black Out" loading="lazy" decoding="async" width="400" height="400">  <video class="sim-fabric-card__video" data-src="https://cdn.rollershow.com.ar/web/landing/blackout-loop-6a077fa62dc87.mp4" poster="https://cdn.rollershow.com.ar/web/landing/blackout-still-6a077cfce8dda.png?width=440&format=auto&quality=62" muted loop playsinline preload="none"></video> <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Black Out</b> <small>Oscuridad total</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--roller sim-fabric-card--transparente " x-show="selectedFamilia === 'roller'" @click="selectFuncion('transparente')" :class="{ 'is-active': selectedFuncion === 'transparente' }" :aria-pressed="selectedFuncion === 'transparente'" aria-label="Sun Screen: Filtra y deja ver"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/web/landing/sunscreen-still-6a077d07d8760.jpg?width=440&format=auto&quality=62" alt="Cortina Sun Screen" loading="lazy" decoding="async" width="400" height="400">  <video class="sim-fabric-card__video" data-src="https://cdn.rollershow.com.ar/web/landing/sunscreen-loop-6a077fa7e4ea6.mp4" poster="https://cdn.rollershow.com.ar/web/landing/sunscreen-still-6a077d07d8760.jpg?width=440&format=auto&quality=62" muted loop playsinline preload="none"></video> <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Sun Screen</b> <small>Filtra y deja ver</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--roller sim-fabric-card--translucida " x-show="selectedFamilia === 'roller'" @click="selectFuncion('translucida')" :class="{ 'is-active': selectedFuncion === 'translucida' }" :aria-pressed="selectedFuncion === 'translucida'" aria-label="Decorativa: Luz suave y privacidad"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/telas/decorativa-night-mermet-designers-collection-bronce.1.jpg?width=520&format=auto&quality=70" alt="Cortina Decorativa" loading="lazy" decoding="async" width="400" height="400">   <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Decorativa</b> <small>Luz suave y privacidad</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--tradicionales sim-fabric-card--opaca " x-show="selectedFamilia === 'tradicionales'" @click="selectFuncion('opaca')" :class="{ 'is-active': selectedFuncion === 'opaca' }" :aria-pressed="selectedFuncion === 'opaca'" aria-label="Oscurecer: Paño textil cerrado"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/fotos/foto-whatsapp-black-out-roble-blanco-428.jpg?width=640&height=520&crop=1.23:1,smart&auto=webp&quality=76" alt="Cortina Oscurecer" loading="lazy" decoding="async" width="400" height="400">   <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Oscurecer</b> <small>Paño textil cerrado</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--tradicionales sim-fabric-card--transparente " x-show="selectedFamilia === 'tradicionales'" @click="selectFuncion('transparente')" :class="{ 'is-active': selectedFuncion === 'transparente' }" :aria-pressed="selectedFuncion === 'transparente'" aria-label="Filtrar luz: Gasa liviana"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/fotos/gasa-r-stica-margarita-blanco-570.jpg?width=640&height=520&crop=1.23:1,smart&auto=webp&quality=76" alt="Cortina Filtrar luz" loading="lazy" decoding="async" width="400" height="400">   <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Filtrar luz</b> <small>Gasa liviana</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--tradicionales sim-fabric-card--translucida " x-show="selectedFamilia === 'tradicionales'" @click="selectFuncion('translucida')" :class="{ 'is-active': selectedFuncion === 'translucida' }" :aria-pressed="selectedFuncion === 'translucida'" aria-label="Caída decorativa: Tela con textura suave"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/fotos/foto-whatsapp-gasa-ceibo-blanco-701.jpg?width=640&height=520&crop=1.23:1,smart&auto=webp&quality=76" alt="Cortina Caída decorativa" loading="lazy" decoding="async" width="400" height="400">   <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Caída decorativa</b> <small>Tela con textura suave</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--verticales sim-fabric-card--opaca " x-show="selectedFamilia === 'verticales'" @click="selectFuncion('opaca')" :class="{ 'is-active': selectedFuncion === 'opaca' }" :aria-pressed="selectedFuncion === 'opaca'" aria-label="Oscurecer: Bandas verticales cerradas"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/fotos/bandas-verticales-black-out-fiberglass-3000-beige-231.jpg?width=640&height=520&crop=1.23:1,smart&auto=webp&quality=76" alt="Cortina Oscurecer" loading="lazy" decoding="async" width="400" height="400">   <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Oscurecer</b> <small>Bandas verticales cerradas</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--verticales sim-fabric-card--transparente " x-show="selectedFamilia === 'verticales'" @click="selectFuncion('transparente')" :class="{ 'is-active': selectedFuncion === 'transparente' }" :aria-pressed="selectedFuncion === 'transparente'" aria-label="Filtrar sol: Vista con bandas verticales"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/fotos/sun-screen-5-pesada-negro-539.png?width=640&height=520&crop=1.23:1,smart&auto=webp&quality=76" alt="Cortina Filtrar sol" loading="lazy" decoding="async" width="400" height="400">   <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Filtrar sol</b> <small>Vista con bandas verticales</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--verticales sim-fabric-card--translucida " x-show="selectedFamilia === 'verticales'" @click="selectFuncion('translucida')" :class="{ 'is-active': selectedFuncion === 'translucida' }" :aria-pressed="selectedFuncion === 'translucida'" aria-label="Suavizar luz: Bandas con textura"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/fotos/foto-vendedor-velvet-beige-503.jpg?width=640&height=520&crop=1.23:1,smart&auto=webp&quality=76" alt="Cortina Suavizar luz" loading="lazy" decoding="async" width="400" height="400">   <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Suavizar luz</b> <small>Bandas con textura</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--duo sim-fabric-card--translucida " x-show="selectedFamilia === 'duo'" @click="selectFuncion('translucida')" :class="{ 'is-active': selectedFuncion === 'translucida' }" :aria-pressed="selectedFuncion === 'translucida'" aria-label="Graduar privacidad: Bandas día y noche"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/fotos/enrollable-duo-essence-ochre-186.jpg?width=640&height=520&crop=1.23:1,smart&auto=webp&quality=76" alt="Cortina Graduar privacidad" loading="lazy" decoding="async" width="400" height="400">   <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Graduar privacidad</b> <small>Bandas día y noche</small> </span> </button><button type="button" class="sim-fabric-card sim-fabric-card--horizontales sim-fabric-card--opaca " x-show="selectedFamilia === 'horizontales'" @click="selectFuncion('opaca')" :class="{ 'is-active': selectedFuncion === 'opaca' }" :aria-pressed="selectedFuncion === 'opaca'" aria-label="Regular luz: Láminas orientables"> <span class="sim-fabric-card__media"> <img class="sim-fabric-card__img" src="https://cdn.rollershow.com.ar/fotos/horizontales-aluminio-544.jpg?width=640&height=520&crop=1.23:1,smart&auto=webp&quality=76" alt="Cortina Regular luz" loading="lazy" decoding="async" width="400" height="400">   <span class="sim-fabric-card__effect" aria-hidden="true"></span> </span> <span class="sim-fabric-card__label"> <b>Regular luz</b> <small>Láminas orientables</small> </span> </button> </div> </div>  <div class="sim-block" data-flow-step="color" x-show="selectedFuncion" x-cloak> <p class="sim-sublabel" x-text="selectedFamilia === 'tradicionales' ? 'Elegí la tela y el color' : 'Elegí el color'">Elegí el color</p> <div class="quoter__cta sim-flow-cta--desktop" data-flow-step="cta" x-show="selectedFuncion" x-cloak x-transition.opacity.duration.180ms> <button type="button" class="btn--hero" :disabled="!selectedTela" @click="simulate()"> <span x-text="selectedTela ? 'Ver cómo me queda' : 'Elegí un color para continuar'">Ver cómo me queda</span> <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> </div> <div class="sim-telas-grid"> <template x-for="t in telasDelGrupo" :key="t.id"> <button type="button" class="sim-tela-card" @click="selectTela(t)" :class="{ 'is-selected': selectedTelaId === t.id }" :aria-pressed="selectedTelaId === t.id" :aria-label="(t.func_label + ' ' + t.swatch_label).trim()"> <img class="sim-tela-card__swatch" :src="t.img_thumb" :alt="('Tela ' + t.func_label + ' ' + t.swatch_label).trim()" loading="lazy" fetchpriority="auto" width="160" height="160"> <div class="sim-tela-card__info"> <p class="sim-tela-card__name" x-text="t.swatch_label"></p> </div> </button> </template> </div> </div> <template x-if="simError"> <p class="sim-form-error" x-text="simError" role="alert"></p> </template> <div class="quoter__cta sim-flow-cta sim-flow-cta--mobile" data-flow-step="cta" x-show="selectedFuncion" x-cloak x-transition.opacity.duration.180ms> <button type="button" class="btn--hero" :disabled="!selectedTela" @click="simulate()"> <span x-text="selectedTela ? 'Ver cómo me queda' : 'Elegí un color para continuar'">Ver cómo me queda</span> <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> </div> <p class="quoter__trust">En segundos la ves puesta en tu ventana.</p>  </div> <!-- PASO 4 — MISMA pantalla mientras genera y cuando esta lista (continuidad total).
+             Mientras genera: la imagen anima (indeterminado, SIN countdown) + claim "creando" +
+             hook WhatsApp. Al terminar: aparece el resultado real + claim final + acciones. --> <div x-show="step === 4" x-cloak class="sim-step sim-step--result"> <div class="sim-step-head"> <span class="sim-step-count" x-text="generating ? 'Procesando imagen' : '¡Listo!'"></span> <h2 x-show="generating" x-cloak>Creando la vista con tu cortina</h2> <h2 x-show="!generating" x-cloak>Así te queda con <span x-text="selectedTela?.familia_label_display || selectedTela?.familia_label || selectedTela?.familia_slug || 'RollerShow'" style="font-weight:500;color:var(--fg-soft)"></span></h2> </div> <div class="sim-result" :class="{ 'is-generating': generating }"> <div class="sim-slider" :style="{ '--photo-aspect': photoAspect }" :class="{ 'is-original': compareOriginal && !generating, 'is-touching': compareTouching && !generating, 'has-compare-preview': comparePreviewing && !generating }" @pointerdown="compareStart($event)" @pointermove="compareMove($event)" @pointerup="compareEnd($event)" @pointercancel="compareCancel()"> <div class="sim-slider__before"> <img :src="photoUrl" alt="Tu ventana antes"> </div> <div class="sim-slider__after"> <img class="sim-slider__after-photo" :src="resultUrl || photoUrl" alt="Tu ventana con cortina simulada"> <!-- Mock (sin resultUrl): tela sobre la foto, solo cuando YA esta lista. --> <img class="sim-slider__after-tela" x-show="!resultUrl && !generating" :src="selectedTela?.img_thumb" :alt="selectedTela?.name"> </div> <!-- Comparacion simple: una imagen completa, tap para alternar original/simulacion.
+                   El toggle es un <button> real hermano de ampliar/regenerar: si fuese el
+                   contenedor (role="button") los otros dos quedarian anidados dentro suyo. --> <div x-show="!generating" x-cloak> <button type="button" class="sim-slider__toggle" :aria-label="compareOriginal ? 'Ver la simulación' : 'Ver la foto original'" :aria-pressed="compareOriginal ? 'true' : 'false'" @click="toggleCompare()"></button> <div class="sim-compare-hint" aria-hidden="true"> <span x-text="compareOriginal ? 'Foto original' : 'Simulación'"></span> <small x-text="compareOriginal ? 'Tocá o deslizá para volver' : 'Tocá o deslizá para comparar'"></small> </div> <button type="button" class="sim-result__expand" @click.stop="lightbox = true" :aria-label="compareOriginal ? 'Ampliar la foto original' : 'Ampliar la simulación'"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8.5" x2="11" y2="13.5"></line><line x1="8.5" y1="11" x2="13.5" y2="11"></line></svg> </button> <!-- Regenerar = acción sobre la imagen (si no salió bien) → vive en la imagen, no en la fila de abajo --> <button type="button" class="sim-result__regen" @click.stop="simulate()" :disabled="!photoFile" aria-label="Regenerar la simulación"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> </button> </div> <!-- Overlay de generacion: barrido de calibracion sobre la imagen, sin HUD decorativo. --> <div class="sim-gen-overlay" x-show="generating" x-cloak aria-live="polite"> <div class="sim-gen__roll" aria-hidden="true"></div> <div class="sim-gen__scanline" aria-hidden="true"></div> <div class="sim-gen__grain" aria-hidden="true"></div> <div class="sim-gen-overlay__status"> <template x-for="(msg, i) in loadSteps" :key="i"> <p class="sim-gen__msg" x-show="loadStep === i"><span x-text="msg"></span></p> </template> </div> </div> </div> </div> <!-- YA LISTA: recap (contexto) → PRECIO (protagónico) → utilidades quiet.
+               Jerarquía de conversión: una sola acción primaria, el resto sutil. --> <div class="sim-ready" x-show="!generating" x-cloak> <!-- Recap de la tela elegida (contexto, sutil) --> <div class="sim-tela-selected-info"> <img :src="selectedTela?.img_thumb" :alt="selectedTela?.name"> <div class="sim-tela-selected-info__text"> <p class="sim-tela-selected-info__name" x-text="selectedTela?.name"></p> <p class="sim-tela-selected-info__color" x-text="selectedTela?.familia_label_display || selectedTela?.familia_label || selectedTela?.color"></p> </div> <button type="button" class="btn--ghost" @click="step = 2" style="margin-left:auto;flex-shrink:0;white-space:nowrap">Cambiar tela</button> </div> <!-- PRIMARIO: el precio, protagónico y arriba (apenas ve la simulación) --> <div class="quoter__cta"> <button type="button" class="btn--hero" @click="step = 5; formStep = 1"> <span>Pedí precio exacto</span> <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> </div> <p class="quoter__trust">Sumá todas las ventanas de tu casa: te pasamos el precio de todas juntas por WhatsApp.</p> <!-- TERCIARIO: utilidades sutiles, debajo del precio (no compiten) --> <div class="sim-utils"> <button type="button" class="sim-util sim-util--add" @click="saveAndAnother()"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+Otra ventana
+</button> <button type="button" class="sim-util" @click="downloadResult()"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+Descargar
+</button> <button type="button" class="sim-util" @click="shareResult()"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path></svg>
+Compartir
+</button> </div> </div> </div> <!-- PASO 5 — Formulario de lead (multi-step: baja la resistencia) --> <div x-show="step === 5" x-cloak class="sim-step"> <!-- Recap: con tela actual muestra la sim; si se entró desde "precio de mis N" sin
+               sim activa, muestra el total y "Ver" vuelve a la galería. --> <button type="button" class="sim-tela-recap sim-tela-recap--sim" x-show="selectedTela" @click="step = 4" aria-label="Ver mi simulación de nuevo"> <span class="sim-tela-recap__thumb"> <img class="sim-tela-recap__photo" :src="resultUrl || photoUrl" alt="Tu simulación"> <img class="sim-tela-recap__tela" x-show="!resultUrl" :src="selectedTela?.img_thumb" :alt="selectedTela?.name"> </span> <div class="sim-tela-recap__text"> <p class="sim-tela-recap__label">Tu simulación</p> <p class="sim-tela-recap__name" x-text="selectedTela?.name"></p> </div> <span class="sim-tela-recap__see">Ver de nuevo</span> </button> <div class="sim-tela-recap" x-show="!selectedTela" x-cloak> <div class="sim-tela-recap__text"> <p class="sim-tela-recap__label">Pedís el precio de</p> <p class="sim-tela-recap__name" x-text="Math.max(1, savedSims.length + (selectedTela ? 1 : 0)) + (Math.max(1, savedSims.length + (selectedTela ? 1 : 0)) === 1 ? ' ventana' : ' ventanas')"></p> </div> <button type="button" class="btn--ghost" @click="step = 1" style="margin-left:auto;font-size:var(--fs-caption)">Ver mis ventanas</button> </div> <!-- Sub-paso 1: medidas primero. Sin medidas, no pedimos WhatsApp. --> <div x-show="formStep === 1" class="sim-substep"> <div class="sim-step-head"> <h2>Primero pasános las medidas</h2> </div> <!-- F3.3 (plan, "la joya"): cota activa sobre la foto del cliente. Convención
+                 de plano del manual (08.2/09.1): línea 1px, tics perpendiculares en los
+                 extremos, cifra en tabular-nums, flecha solo si hay movimiento real (acá
+                 no la hay → tics). Receta "Cotas técnicas" del manual: se dibuja en 720ms
+                 con --ease-material y el valor aparece ya completo en los últimos 180ms
+                 (no cuenta el número). Las cotas no detectan la ventana en la foto: cubren
+                 ~70% del ancho/alto del contenedor por convención; lo que cambia en vivo
+                 es solo el valor. --> <div class="sim-measure-photo" x-show="photoUrl" x-cloak :style="{ '--photo-aspect': photoAspect }"> <img class="sim-measure-photo__img" :src="photoUrl" alt="Tu ventana con las cotas que vas cargando"> <!-- Cotas en CSS, no en SVG: el viewBox 100x100 con preserveAspectRatio=none
+                   deformaba los tics (los del alto salian 3 veces mas largos que los del
+                   ancho) y la etiqueta caia justo encima de la linea. Ahora la linea se
+                   corta a los lados del valor, como en un plano (manual 08.2/09.1). --> <div class="sim-cota sim-cota--w" :class="{ 'is-active': Number(ancho) > 0 }" aria-hidden="true"> <i class="sim-cota__tick"></i> <i class="sim-cota__line"></i> <span class="sim-cota__val" x-text="ancho + ' cm'"></span> <i class="sim-cota__line"></i> <i class="sim-cota__tick"></i> </div> <div class="sim-cota sim-cota--h" :class="{ 'is-active': Number(alto) > 0 }" aria-hidden="true"> <i class="sim-cota__tick"></i> <i class="sim-cota__line"></i> <span class="sim-cota__val" x-text="alto + ' cm'"></span> <i class="sim-cota__line"></i> <i class="sim-cota__tick"></i> </div> </div> <div class="size-row"> <div class="size-field"> <label class="size-field__label" for="sim-ancho-compact">Ancho</label> <div class="stepper"> <button type="button" class="stepper__btn" @click="ancho = Math.max(20, (parseInt(ancho) || 120) - 5)" aria-label="Restar 5 cm al ancho">-</button> <input type="number" id="sim-ancho-compact" x-model="ancho" placeholder="Ej. 120" min="20" max="600" step="5" inputmode="numeric" aria-describedby="sim-ancho-compact-unit"> <span class="stepper__unit" id="sim-ancho-compact-unit">cm</span> <button type="button" class="stepper__btn" @click="ancho = Math.min(600, (parseInt(ancho) || 120) + 5)" aria-label="Sumar 5 cm al ancho">+</button> </div> </div> <div class="size-field"> <label class="size-field__label" for="sim-alto-compact">Alto</label> <div class="stepper"> <button type="button" class="stepper__btn" @click="alto = Math.max(20, (parseInt(alto) || 150) - 5)" aria-label="Restar 5 cm al alto">-</button> <input type="number" id="sim-alto-compact" x-model="alto" placeholder="Ej. 150" min="20" max="400" step="5" inputmode="numeric" aria-describedby="sim-alto-compact-unit"> <span class="stepper__unit" id="sim-alto-compact-unit">cm</span> <button type="button" class="stepper__btn" @click="alto = Math.min(400, (parseInt(alto) || 150) + 5)" aria-label="Sumar 5 cm al alto">+</button> </div> </div> </div> <p class="sim-measures-hint">Medí el ancho y el alto de la abertura. Con esos datos te pasamos un precio preciso.</p> <template x-if="formError"> <p class="sim-form-error" x-text="formError" role="alert"></p> </template> <div class="quoter__cta"> <button type="button" class="btn--hero" @click="goWhatsappStep()" :disabled="!hasMeasures()"> <span x-text="hasMeasures() ? 'Seguir con WhatsApp' : 'Completá ancho y alto'">Completá ancho y alto</span> <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> <button type="button" class="btn--ghost btn--block" @click="step = 4">Volver a la simulación</button> </div> </div> <!-- Sub-paso 2: WhatsApp recien despues de medidas. --> <div x-show="formStep === 2" class="sim-substep"> <div class="sim-step-head"> <span class="sim-step-count" x-text="ancho + ' x ' + alto + ' cm'"></span> <h2>Tu WhatsApp para enviártelo</h2> </div> <div class="sim-field"> <label for="sim-telefono-primary">Tu WhatsApp</label> <input type="tel" id="sim-telefono-primary" x-model="telefono" placeholder="11 2345 6789" autocomplete="tel" inputmode="tel" enterkeyhint="send" @keydown.enter="submitForm()"> </div> <template x-if="formError"> <p class="sim-form-error" x-text="formError" role="alert"></p> </template> <div class="quoter__cta"> <button type="button" class="btn--hero" @click="submitForm()" :disabled="sending || !telefono.trim() || !hasMeasures()"> <span x-text="sending ? 'Enviando…' : 'Enviámelo por WhatsApp'"></span> <svg x-show="!sending" class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </button> <button type="button" class="btn--ghost btn--block" @click="formStep = 1">Cambiar medidas</button> </div> </div> </div> <!-- (No hay "paso 6" inline: al enviar el form se redirige a /gracias, la TKP real
+             con tracking + reseñas + el loop "Simulá otra ventana".) --> <!-- Lightbox: simulación ampliada (acción "ver" de Nico) --> <div class="sim-lightbox" x-ref="lightbox" x-show="lightbox" x-cloak x-transition.opacity @click="lightbox = false" @keydown.escape.window="lightbox = false" @keydown.tab="trapFocus($event)" role="dialog" aria-modal="true" :aria-label="compareOriginal ? 'Foto original ampliada' : 'Simulación ampliada'"> <button type="button" class="sim-lightbox__close" x-ref="lightboxClose" @click="lightbox = false" aria-label="Cerrar"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> </button> <img class="sim-lightbox__img" :src="compareOriginal ? photoUrl : (resultUrl || photoUrl)" :alt="compareOriginal ? 'Tu ventana antes de la cortina' : 'Tu ventana con la cortina simulada'" @click.stop> </div> </div><!-- /quoter --> </div><!-- /hero__grid --> </section> <!-- ============================================================
+       Prueba social: simulaciones REALES de clientes.
+       Refuerza, justo debajo de la herramienta, que el simulador produce
+       resultados reales. Datos en `realSims` (URLs del CDN).
+       ============================================================ --> <section class="realsims container" aria-labelledby="realsims-title"> <div class="realsims__head"> <h2 class="realsims__title h-display" id="realsims-title">Lo probaron antes de comprar</h2> <p class="realsims__sub">Fotos reales que nos mandaron por WhatsApp: la ventana original y el resultado instalado.</p> </div> <div class="realsims__list"> <article class="realsim"> <span class="realsim__caption" aria-live="polite"> <span class="realsim__room">Dormitorio</span> <span class="realsim__state" data-real-state>Tocá la foto: original / con cortina</span> </span> <button type="button" class="realsim__toggle has-auto-preview" data-real-toggle data-state="after" data-before-aspect="620 / 830" data-after-aspect="620 / 830" style="--before-aspect: 620 / 830; --after-aspect: 620 / 830; --real-aspect: 620 / 830;" aria-pressed="false" aria-label="Ver foto original de Dormitorio">  <img class="realsim__img realsim__img--after" src="https://cdn.rollershow.com.ar/web/simulador/casos/rs-simulador-caso-dormitorio-6a5f837dc5106.jpg?width=620&auto=webp&quality=78" alt="Resultado con cortina - Dormitorio" loading="eager" decoding="async" width="620" height="830"> <img class="realsim__img realsim__img--before" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-real-src="https://cdn.rollershow.com.ar/web/simulador/antes-corregidos/rs-simulador-before-dormitorio-896x1200-6a4e5a884b241.png?width=620&auto=webp&quality=78" alt="Foto original - Dormitorio" loading="lazy" decoding="async" width="620" height="830"> <span class="realsim__switch" aria-hidden="true"> <span class="realsim__switch-label realsim__switch-label--before">Original</span> <span class="realsim__switch-track"><span class="realsim__switch-mark"></span></span> <span class="realsim__switch-label realsim__switch-label--after">Con cortina</span> </span> </button> </article><article class="realsim"> <span class="realsim__caption" aria-live="polite"> <span class="realsim__room">Living</span> <span class="realsim__state" data-real-state>Tocá la foto: original / con cortina</span> </span> <button type="button" class="realsim__toggle has-auto-preview" data-real-toggle data-state="after" data-before-aspect="620 / 827" data-after-aspect="620 / 827" style="--before-aspect: 620 / 827; --after-aspect: 620 / 827; --real-aspect: 620 / 827;" aria-pressed="false" aria-label="Ver foto original de Living">  <img class="realsim__img realsim__img--after" src="https://cdn.rollershow.com.ar/web/simulador/casos/rs-simulador-caso-living-6a5f837ea16a7.jpg?width=620&auto=webp&quality=78" alt="Resultado con cortina - Living" loading="lazy" decoding="async" width="620" height="827"> <img class="realsim__img realsim__img--before" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-real-src="https://cdn.rollershow.com.ar/web/simulador/antes-corregidos/rs-simulador-before-living-896x1195-6a4e5a894a1ad.png?width=620&auto=webp&quality=78" alt="Foto original - Living" loading="lazy" decoding="async" width="620" height="827"> <span class="realsim__switch" aria-hidden="true"> <span class="realsim__switch-label realsim__switch-label--before">Original</span> <span class="realsim__switch-track"><span class="realsim__switch-mark"></span></span> <span class="realsim__switch-label realsim__switch-label--after">Con cortina</span> </span> </button> </article><article class="realsim"> <span class="realsim__caption" aria-live="polite"> <span class="realsim__room">Comedor</span> <span class="realsim__state" data-real-state>Tocá la foto: original / con cortina</span> </span> <button type="button" class="realsim__toggle has-auto-preview" data-real-toggle data-state="after" data-before-aspect="620 / 579" data-after-aspect="620 / 579" style="--before-aspect: 620 / 579; --after-aspect: 620 / 579; --real-aspect: 620 / 579;" aria-pressed="false" aria-label="Ver foto original de Comedor">  <img class="realsim__img realsim__img--after" src="https://cdn.rollershow.com.ar/web/simulador/casos/rs-simulador-caso-comedor-6a5f837f7a81b.jpg?width=620&auto=webp&quality=78" alt="Resultado con cortina - Comedor" loading="lazy" decoding="async" width="620" height="579"> <img class="realsim__img realsim__img--before" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-real-src="https://cdn.rollershow.com.ar/web/simulador/antes-corregidos/rs-simulador-before-comedor-1062x992-6a4e5a8a4f88d.png?width=620&auto=webp&quality=78" alt="Foto original - Comedor" loading="lazy" decoding="async" width="620" height="579"> <span class="realsim__switch" aria-hidden="true"> <span class="realsim__switch-label realsim__switch-label--before">Original</span> <span class="realsim__switch-track"><span class="realsim__switch-mark"></span></span> <span class="realsim__switch-label realsim__switch-label--after">Con cortina</span> </span> </button> </article><article class="realsim"> <span class="realsim__caption" aria-live="polite"> <span class="realsim__room">Oficina</span> <span class="realsim__state" data-real-state>Tocá la foto: original / con cortina</span> </span> <button type="button" class="realsim__toggle has-auto-preview" data-real-toggle data-state="after" data-before-aspect="620 / 668" data-after-aspect="620 / 668" style="--before-aspect: 620 / 668; --after-aspect: 620 / 668; --real-aspect: 620 / 668;" aria-pressed="false" aria-label="Ver foto original de Oficina">  <img class="realsim__img realsim__img--after" src="https://cdn.rollershow.com.ar/web/simulador/casos/rs-simulador-caso-oficina-6a5f838054c1a.jpg?width=620&auto=webp&quality=78" alt="Resultado con cortina - Oficina" loading="lazy" decoding="async" width="620" height="668"> <img class="realsim__img realsim__img--before" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" data-real-src="https://cdn.rollershow.com.ar/web/simulador/antes-corregidos/rs-simulador-before-oficina-992x1068-6a4e5a8b416dd.png?width=620&auto=webp&quality=78" alt="Foto original - Oficina" loading="lazy" decoding="async" width="620" height="668"> <span class="realsim__switch" aria-hidden="true"> <span class="realsim__switch-label realsim__switch-label--before">Original</span> <span class="realsim__switch-track"><span class="realsim__switch-mark"></span></span> <span class="realsim__switch-label realsim__switch-label--after">Con cortina</span> </span> </button> </article> </div> </section> <!-- Debajo del simulador: mismas secciones que la landing (A/B cotizador vs simulador) --> <div class="below-hero below-hero--simulator"> <!-- ============================================================ TRUST STRIP — editorial asimétrico ============================================================ --> <section class="trust" aria-label="Por qué elegirnos"> <div class="container"> <div class="trust__editorial"> <div class="trust__hero reveal"> <div class="trust__big">1M<span>+</span></div> <div class="trust__big-lab">Cortinas a medida instaladas desde 2010. Es lo único que hacemos.</div> </div> <ul class="trust__items"> <li class="reveal" style="--delay: 60ms"> <span class="trust__items-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-2.9L6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3z"></path></svg> </span> <span class="trust__items-num">4,9/5</span> <span class="trust__items-lab">10K+ comentarios positivos. Promedio 4,9 / 5.</span> </li> <li class="reveal" style="--delay: 120ms"> <span class="trust__items-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg> </span> <span class="trust__items-num">75+</span> <span class="trust__items-lab">Telas para elegir entre Blackout, Sunscreen, decorativas.</span> </li> <li class="reveal" style="--delay: 180ms"> <span class="trust__items-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9.5 4.5-1 8-4.5 8-9.5V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg> </span> <span class="trust__items-num">Hasta 3 años</span> <span class="trust__items-lab">De garantía sobre el sistema, los herrajes y la confección.</span> </li> <li class="reveal" style="--delay: 240ms"> <span class="trust__items-icon" aria-hidden="true"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg> </span> <span class="trust__items-num">5–10 días</span> <span class="trust__items-lab">De fabricación a medida desde que confirmás el pedido.</span> </li> </ul> </div> </div> </section>   <!-- ============================================================ FINAL CTA ============================================================ --> <section class="container"> <div class="cta-final__inner reveal"> <h2 class="cta-final__title">Mirá cómo queda tu cortina en la ventana, gratis.<br />El resto lo manejamos nosotros.</h2> <p class="cta-final__sub"> Subí una foto de tu ventana y mirá cómo te queda antes de decidir. Si te gusta, te pasamos el precio exacto, sin presión y sin compromiso. </p> <a href="#cotizador" class="btn btn--lg" style="margin-top: 0.5rem;"> Probar en mi ventana <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> <p class="cta-final__reassurance">  Simulación gratis, sin compromiso y con respuesta en minutos </p> <div class="payments"> <span class="payments__label">Aceptamos</span> <span class="payments__list">
+Mercado Pago, Visa, Mastercard, American Express, Transferencia y <b>hasta 12 cuotas</b> </span> </div> </div> </section> <!-- Sticky CTA dock — aparece cuando el cotizador sale del viewport -->  </div> <script>
+(() => {
+  'use strict';
+
+  /* ---------- Promo: fecha del último día del mes corriente (sin countdown) ---------- */
+  const promoDeadline = (() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+  })();
+  const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  document.querySelectorAll('[data-promo-deadline]').forEach(el => {
+    el.textContent = `${promoDeadline.getDate()} de ${months[promoDeadline.getMonth()]}`;
+  });
+
+  /* ---------- Reveal ---------- */
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const delay = e.target.style.getPropertyValue('--delay') || '0ms';
+          e.target.style.transitionDelay = delay;
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach((el) => io.observe(el));
+  } else {
+    reveals.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  /* ---------- Sticky CTA dock — visible cuando el cotizador sale del viewport ---------- */
+  const stickyCta = document.getElementById('stickyCta');
+  const cotizadorEl = document.getElementById('cotizador');
+  if (stickyCta && cotizadorEl && 'IntersectionObserver' in window) {
+    const dockIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        // Mostrar el dock cuando el cotizador NO está intersectando (out of viewport)
+        const shouldShow = !e.isIntersecting;
+        stickyCta.classList.toggle('is-visible', shouldShow);
+        stickyCta.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+      });
+    }, { threshold: 0, rootMargin: '-80px 0px 0px 0px' });
+    dockIO.observe(cotizadorEl);
+  }
+
+  /* ---------- Before/After slider Blackout vs Sunscreen ---------- */
+  const baSlider = document.getElementById('baSlider');
+  if (baSlider) {
+    const baFrame = baSlider.querySelector('.ba-slider__frame');
+    const baAfterImg = baSlider.querySelector('.ba-slider__img--after');
+    const baHandle = baSlider.querySelector('.ba-slider__handle');
+    const baRange = baSlider.querySelector('.ba-slider__range');
+
+    const setBaValue = (pct) => {
+      const v = Math.max(0, Math.min(100, pct));
+      // clip-path inset(top right bottom left) — el sunscreen se descubre desde la izquierda
+      const clip = `inset(0 0 0 ${v}%)`;
+      baAfterImg.style.clipPath = clip;
+      baAfterImg.style.webkitClipPath = clip;
+      baHandle.style.left = v + '%';
+      baRange.value = v;
+      baHandle.setAttribute('aria-valuenow', Math.round(v));
+    };
+    setBaValue(50);
+
+    let dragging = false;
+    let baTouchStartX = 0, baTouchStartY = 0, baGesture = null; // 'scroll' | 'drag'
+    const positionFromEvent = (e) => {
+      const rect = baFrame.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      return ((clientX - rect.left) / rect.width) * 100;
+    };
+
+    // Mouse: drag inmediato
+    const startDragMouse = (e) => {
+      dragging = true;
+      baSlider.classList.add('is-dragging');
+      setBaValue(positionFromEvent(e));
+      e.preventDefault();
+    };
+
+    // Touch: detectar dirección antes de capturar
+    const startDragTouch = (e) => {
+      const t = e.touches[0];
+      baTouchStartX = t.clientX;
+      baTouchStartY = t.clientY;
+      baGesture = null;
+      // NO preventDefault todavía — dejamos que el browser decida si scrollea
+    };
+    const moveDragTouch = (e) => {
+      const t = e.touches[0];
+      const dx = t.clientX - baTouchStartX;
+      const dy = t.clientY - baTouchStartY;
+      if (baGesture === null) {
+        if (Math.hypot(dx, dy) < 6) return;
+        // bias fuerte hacia drag horizontal
+        if (Math.abs(dy) > Math.abs(dx) * 2.5 && Math.abs(dy) > 16) {
+          baGesture = 'scroll';
+          return;
+        }
+        baGesture = 'drag';
+        dragging = true;
+        baSlider.classList.add('is-dragging');
+        setBaValue(positionFromEvent(e));
+      }
+      if (baGesture === 'drag') {
+        e.preventDefault();
+        setBaValue(positionFromEvent(e));
+      }
+    };
+
+    const moveDrag = (e) => {
+      if (!dragging) return;
+      setBaValue(positionFromEvent(e));
+    };
+    const endDrag = () => {
+      if (!dragging && baGesture !== 'drag') { baGesture = null; return; }
+      dragging = false;
+      baGesture = null;
+      baSlider.classList.remove('is-dragging');
+    };
+
+    baFrame.addEventListener('mousedown', startDragMouse);
+    baFrame.addEventListener('touchstart', startDragTouch, { passive: true });
+    baFrame.addEventListener('touchmove', moveDragTouch, { passive: false });
+    window.addEventListener('mousemove', moveDrag);
+    window.addEventListener('mouseup', endDrag);
+    window.addEventListener('touchend', endDrag);
+    window.addEventListener('touchcancel', endDrag);
+
+    // Keyboard via the handle
+    baHandle.addEventListener('keydown', (e) => {
+      const step = (e.shiftKey ? 10 : 2);
+      let v = parseFloat(baRange.value);
+      if (e.key === 'ArrowLeft') { setBaValue(v - step); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setBaValue(v + step); e.preventDefault(); }
+      if (e.key === 'Home') { setBaValue(0); e.preventDefault(); }
+      if (e.key === 'End') { setBaValue(100); e.preventDefault(); }
+    });
+    // Native range for accessibility tools
+    baRange.addEventListener('input', () => setBaValue(parseFloat(baRange.value)));
+
+    // Teaser: al entrar al viewport hace una mini-demo oscilando una vez
+    if ('IntersectionObserver' in window) {
+      const teaserIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting || e.target.dataset.demoed) return;
+          e.target.dataset.demoed = '1';
+          const targets = [30, 70, 50];
+          let i = 0;
+          const tick = () => {
+            if (i >= targets.length) return;
+            const target = targets[i++];
+            const start = parseFloat(baRange.value);
+            const startTime = performance.now();
+            const dur = 800;
+            const ease = (t) => 1 - Math.pow(1 - t, 3);
+            const animate = (now) => {
+              const t = Math.min(1, (now - startTime) / dur);
+              setBaValue(start + (target - start) * ease(t));
+              if (t < 1) requestAnimationFrame(animate);
+              else setTimeout(tick, 260);
+            };
+            requestAnimationFrame(animate);
+          };
+          setTimeout(tick, 700);
+          teaserIO.unobserve(e.target);
+        });
+      }, { threshold: 0.55 });
+      teaserIO.observe(baSlider);
+    }
+  }
+})();
+</script> <script>
+/* ============================================================
+   Asistente — chat en vivo simulado. Arranca solo al entrar en
+   viewport: saludo, "escribiendo…", respuestas y derivación a WhatsApp.
+   ============================================================ */
+(() => {
+  const chat = document.getElementById('chat');
+  const body = document.getElementById('chatBody');
+  const quick = document.getElementById('chatQuick');
+  const presence = document.getElementById('chatPresence');
+  if (!chat || !body || !quick) return;
+
+  const WHATSAPP = '5491140813223';
+
+  // Pregunta → respuesta del asesor. Texto estático (sin datos de usuario).
+  const QA = [
+    { q: '¿Cómo tomo las medidas?',
+      a: 'Es fácil: con un metro tomá el ancho y el alto del vano de la ventana. Si la cortina va por fuera del marco, sumale unos 10 cm de cada lado. Si querés, mandanos una foto y te confirmamos las medidas exactas.' },
+    { q: '¿Cuánto sale la instalación?',
+      a: 'En CABA y GBA coordinamos la instalación con vos. En el resto del país la cortina llega lista para colgar: con tarugos, tornillos e instructivo, la ponés en unos 15 minutos.' },
+    { q: '¿Instalan en mi zona?',
+      a: 'Fabricamos a medida y enviamos a todo el país. Decinos tu localidad y te confirmamos los tiempos y si hay instalación coordinada en tu zona.' },
+    { q: '¿Cuánto sale el envío?',
+      a: 'El envío depende de tu localidad y en muchas zonas está bonificado. Pasanos tu código postal y te lo calculamos al toque.' },
+    { q: '¿Cuánto me sale en distintas medidas?',
+      a: 'El precio sale del ancho, el alto y la tela que elijas. Pasanos las medidas de tu ventana y te armamos la cotización exacta en minutos.' },
+  ];
+
+  let started = false;
+  const asked = new Set();
+
+  function scrollDown() { body.scrollTop = body.scrollHeight; }
+
+  function addMsg(side, text, ctaFor) {
+    const msg = document.createElement('div');
+    msg.className = 'msg msg--' + side;
+    const bubble = document.createElement('div');
+    bubble.className = 'msg__bubble';
+    bubble.textContent = text;
+    msg.appendChild(bubble);
+    if (ctaFor) {
+      const cta = document.createElement('a');
+      cta.className = 'msg__cta';
+      cta.href = 'https://wa.me/' + WHATSAPP + '?text=' +
+        encodeURIComponent('Hola! Te escribo por: ' + ctaFor);
+      cta.target = '_blank';
+      cta.rel = 'noopener';
+      cta.textContent = 'Seguir por WhatsApp';
+      msg.appendChild(cta);
+    }
+    body.appendChild(msg);
+    scrollDown();
+  }
+
+  let typingEl = null;
+  function showTyping() {
+    if (presence) presence.textContent = 'respondiendo';
+    typingEl = document.createElement('div');
+    typingEl.className = 'msg msg--bot';
+    typingEl.innerHTML = '<div class="msg__bubble msg__typing"><span></span><span></span><span></span></div>';
+    body.appendChild(typingEl);
+    scrollDown();
+  }
+  function hideTyping() {
+    if (typingEl) { typingEl.remove(); typingEl = null; }
+    if (presence) presence.textContent = 'por WhatsApp';
+  }
+
+  function renderQuick() {
+    quick.innerHTML = '';
+    const pendientes = QA.filter((x) => !asked.has(x.q));
+    if (!pendientes.length) {
+      const all = document.createElement('a');
+      all.className = 'chat__quick-all';
+      all.href = 'https://wa.me/' + WHATSAPP + '?text=' +
+        encodeURIComponent('Hola! Quiero cotizar una cortina a medida.');
+      all.target = '_blank';
+      all.rel = 'noopener';
+      all.textContent = 'Cotizar mi cortina por WhatsApp';
+      quick.appendChild(all);
+      return;
+    }
+    pendientes.forEach((item) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'chat__chip';
+      chip.textContent = item.q;
+      chip.addEventListener('click', () => ask(item));
+      quick.appendChild(chip);
+    });
+  }
+
+  function ask(item) {
+    asked.add(item.q);
+    addMsg('user', item.q);
+    quick.innerHTML = '';
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addMsg('bot', item.a, item.q);
+      renderQuick();
+    }, 1150);
+  }
+
+  function start() {
+    if (started) return;
+    started = true;
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addMsg('bot', '¡Hola! Soy del equipo de RollerShow. Contame qué necesitás saber y te ayudo en el momento.');
+      renderQuick();
+    }, 900);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { start(); io.disconnect(); }
+    }, { threshold: 0.3 });
+    io.observe(chat);
+  } else {
+    start();
+  }
+
+  // Composer — el usuario escribe texto libre; el asesor deriva a WhatsApp.
+  const chatForm = document.getElementById('chatForm');
+  const chatInput = document.getElementById('chatInput');
+  if (chatForm && chatInput) {
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const txt = chatInput.value.trim();
+      if (!txt) return;
+      chatInput.value = '';
+      started = true;
+      addMsg('user', txt);
+      quick.innerHTML = '';
+      showTyping();
+      setTimeout(() => {
+        hideTyping();
+        addMsg('bot', 'Gracias por tu mensaje. Para darte una respuesta exacta al instante seguimos por WhatsApp, donde te atiende un asesor del equipo.', txt);
+        renderQuick();
+      }, 1150);
+    });
+  }
+
+  // Disponibilidad en vivo — calculada con la hora real del visitante (L-S 9-20 h).
+  const statusEl = document.getElementById('asistenteStatus');
+  const estadoEl = document.getElementById('asistenteEstado');
+  if (statusEl && estadoEl) {
+    const ahora = new Date();
+    const dia = ahora.getDay();
+    const hora = ahora.getHours();
+    const esHabil = dia >= 1 && dia <= 6;
+    const abierto = esHabil && hora >= 9 && hora < 20;
+    if (abierto) {
+      const hh = String(hora).padStart(2, '0');
+      const mm = String(ahora.getMinutes()).padStart(2, '0');
+      estadoEl.textContent = `Estamos atendiendo ahora, son las ${hh}:${mm}`;
+      statusEl.classList.add('is-open');
+    } else {
+      let cuando = 'mañana a las 9 h';
+      if (esHabil && hora < 9) cuando = 'hoy a las 9 h';
+      else if (dia === 6) cuando = 'el lunes a las 9 h';
+      estadoEl.textContent = `Ahora estamos cerrados, te respondemos ${cuando}`;
+      statusEl.classList.add('is-closed');
+    }
+  }
+})();
+</script> </main> <!-- ============================================================ FOOTER ============================================================ --> <footer class="site-footer"> <div class="container"> <div class="site-footer__inner"> <div class="site-footer__brand"> <a href="/" class="brand brand--invert" aria-label="RollerShow">  <img class="brand-logo" src="https://assets.rollershow.com.ar/2021/img/rs_logo_animado_w.svg" alt="RollerShow" width="600" height="52" loading="lazy"> </a> <p>Cortinas a medida con asesoramiento al instante. Desde 2010, ayudándote a elegir la cortina justa para tu casa.</p> </div> <div class="site-footer__contact"> <a href="https://wa.me/5491140813223">WhatsApp</a> <a href="tel:08002204010">0800 220 4010</a> </div> <div class="socials"> <a href="https://www.instagram.com/cortinas.rollershow" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58 0 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.22-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.05-.41-2.22C2.18 15.58 2.16 15.2 2.16 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.18 8.8 2.16 12 2.16M12 0C8.74 0 8.33 0 7.05.07 5.78.13 4.9.33 4.14.63a5.86 5.86 0 00-2.13 1.38A5.86 5.86 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s0 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.32.83.74 1.53 1.38 2.13.6.64 1.3 1.06 2.13 1.38.76.3 1.64.5 2.91.56C8.33 24 8.74 24 12 24s3.67 0 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 002.13-1.38 5.86 5.86 0 001.38-2.13c.3-.76.5-1.64.56-2.91C24 15.67 24 15.26 24 12s0-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 00-1.38-2.13A5.86 5.86 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67 0 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm6.4-11.84a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"></path></svg></a> <a href="https://www.facebook.com/rollershow" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99C18.34 21.13 22 16.99 22 12z"></path></svg></a> <a href="https://www.tiktok.com/@cortinasrollershow" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64c.298-.001.595.04.88.13V9.4a6.84 6.84 0 00-1-.07A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.92a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.84-.35z"></path></svg></a> <a href="https://www.youtube.com/c/rollershow" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5a3 3 0 00-2.1 2.1A31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"></path></svg></a> </div> </div> <div class="site-footer__proof"> <span>+1M cortinas entregadas</span> <span>289K en Instagram</span> <span>263K en Facebook</span> <span>+10K comentarios positivos</span> <span>Vendiendo online desde 2010</span> </div> <div class="site-footer__bottom"> <div>© <span id="year"></span> RollerShow. CUIT verificado en AFIP. Envíos a todo el país.</div> <div>Hecho a medida en Argentina</div> </div> </div> </footer> </div>  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true"> <symbol id="rs-logo" viewBox="0 0 600 52"> <g transform="translate(-498.254 -197.66)" fill="currentColor"> <path d="M536,226.3c1.6-1.5,3-3.2,4-5.2s1.5-4.2,1.5-6.5c0-2.9-.8-5.7-2.3-8.1-1.5-2.3-3.5-4.2-6-5.5s-5.2-2-8-2h-26.5v49.2h9.2v-17.5h13.3l11.9,17.1.3.4l11.4.1-13.4-19.1c1.7-.7,3.3-1.7,4.6-2.9Zm-4.1-11.7c0,1.2-.4,2.4-1,3.5-.7,1.1-1.7,2-2.8,2.7-1.2.7-2.6,1-4,1h-16.1v-13.8h15.5c1.5,0,2.9.3,4.2.9c1.2.5,2.2,1.4,3,2.4.8.9,1.2,2.1,1.2,3.3v0Z"></path> <polygon points="651.9,239.2 622.9,239.2 622.9,199 613.7,199 613.7,248.2 651.9,248.2"></polygon> <polygon points="703,239.2 674.1,239.2 674.1,199 664.8,199 664.8,248.2 703,248.2"></polygon> <polygon points="754,239.2 724.7,239.2 724.7,227.5 750.3,227.5 750.3,218.5 724.7,218.5 724.7,208 754,208 754,199 715.5,199 715.5,248.2 754,248.2"></polygon> <path d="M776.1,230.7h13.3l11.9,17.1.3.4l11.4.1-13.5-19.1c1.7-.7,3.2-1.7,4.6-2.9c1.6-1.5,3-3.2,4-5.2s1.5-4.2,1.5-6.5c0-2.9-.8-5.7-2.3-8.1-1.5-2.3-3.5-4.2-5.9-5.5-2.5-1.3-5.2-2-8-2h-26.5v49.2h9.2v-17.5Zm20-9.9c-1.2.7-2.6,1-4,1h-16.1v-13.8h15.5c1.5,0,2.9.3,4.2.9c1.2.5,2.2,1.4,3,2.4.7,1,1.1,2.2,1.1,3.4s-.4,2.4-1,3.5c-.6,1-1.5,1.9-2.7,2.6v0Z"></path> <circle cx="577.1" cy="223.6" r="20.7" fill="none" stroke="currentColor" stroke-width="9.2"></circle> <path d="M882.4,222.6v0c-2.1-1-4.2-1.8-6.5-2.3s-4.8-1-7.4-1.4c-2.3-.3-4.6-.7-6.8-1.3-1.5-.4-3-1.1-4.2-2.1-.9-.8-1.4-2-1.3-3.2c0-1.8,1.2-3.4,2.9-4c2.5-1.2,5.2-1.7,7.9-1.6c2.8-.1,5.6.6,8.1,1.8c2.3,1.2,4.2,2.8,5.8,4.8l.7.9l6.2-6.7-.5-.6c-2.1-2.9-4.9-5.1-8.2-6.5-7.1-2.8-15.1-3-22.3-.5-2.9,1-5.5,2.7-7.5,5-1.9,2.2-2.9,5.1-2.9,8-.1,2.7.8,5.4,2.5,7.6c1.8,2.1,4.1,3.8,6.8,4.8c3.2,1.3,6.6,2.1,10,2.5c3.5.4,7,1.2,10.4,2.3c1.8.4,3.1,2,3.1,3.8c0,1.3-.5,2.6-1.6,3.4-1.3,1.1-2.8,1.8-4.5,2.2-1.9.5-3.8.8-5.8.8-3.3.1-6.5-.6-9.4-2.1-2.8-1.6-5.3-3.7-7.5-6.2l-.8-.9-5.9,7.6.5.6c2.7,3.2,6.2,5.7,10.1,7.3c4.1,1.5,8.4,2.3,12.7,2.2c3.9.1,7.8-.6,11.4-1.9c3-1.1,5.7-3,7.7-5.6c1.8-2.5,2.8-5.5,2.7-8.6.1-2.2-.6-4.4-1.8-6.2-1.1-1.6-2.7-2.9-4.6-3.9Z"></path> <path d="M1072.9,227.5c-.5,1.3-1,2.7-1.4,4.1l-.4,1.2c-.1-.4-.3-.8-.4-1.1-.5-1.3-1.1-2.6-1.6-3.9l-8.6-20.6h-8.2l-8.9,20.7c-.6,1.3-1.2,2.7-1.7,4-.1.4-.3.7-.4,1.1-.1-.3-.2-.7-.3-1-.4-1.4-.9-2.7-1.3-3.9l-10-29h-10l17.5,49.3h6.7l12.2-28.3l12.1,28.3h6.4l19-49.3h-9.9l-10.8,28.4Z"></path> <g transform="translate(76.567 12.526)"> <path d="M1015.5,225.4c3.1-.1,5.6,2.3,5.7,5.4s-2.3,5.6-5.4,5.7-5.6-2.3-5.7-5.4c0-.1,0-.1,0-.2-.1-2.9,2.3-5.4,5.4-5.5Zm0,10.5c2.7.1,5-2,5.1-4.7s-2-5-4.7-5.1-5,2-5.1,4.7c0,.1,0,.1,0,.2-.1,2.6,2,4.8,4.6,4.9c0,0,0,0,.1,0v0Zm-1.8-8h2c.9-.1,1.7.7,1.8,1.6c0,.1,0,.1,0,.2c0,.8-.4,1.4-1.2,1.6v0c.1.1.1.2.2.3l1.2,2.3h-.8l-1.3-2.6h-1.3v2.6h-.7l.1-6Zm1.9,3c.6,0,1.1-.4,1.2-1c0-.1,0-.1,0-.2.1-.6-.4-1.1-1-1.2-.1,0-.1,0-.2,0h-1.3v2.4h1.3Z"></path> </g> <g transform="translate(18.1 0.213)"> <rect width="9.2" height="17.8" rx="0" ry="0" transform="translate(883.2 230.2)"></rect> <rect width="9.2" height="22.3" rx="0" ry="0" transform="translate(925.1 198.7)"></rect> <polygon points="934.3,230.2 934.3,221 892.4,221 892.4,198.7 883.2,198.7 883.2,230.2 925.1,230.2 925.1,248 934.3,248 934.3,230.2 934.3,230.2 934.3,230.2"></polygon> </g> <circle cx="989.1" cy="223.5" r="20.7" fill="none" stroke="currentColor" stroke-width="9.2"></circle> </g> </symbol> </svg>  <script>
+/* ---------- Header scroll state ---------- */
+(function() {
+  var header = document.getElementById('siteHeader');
+  if (!header) return;
+  var update = function() { header.setAttribute('data-scrolled', window.scrollY > 8 ? 'true' : 'false'); };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ---------- Spotlight de foco: activo durante todo el uso del simulador ----------
+   Se enciende al primer toque/foco dentro del simulador y se mantiene; se suelta
+   al tocar fuera. Mismo concepto que la landing-cotizador. */
+(function() {
+  var q = document.querySelector('.quoter');
+  if (!q) return;
+  var on = function() { document.body.classList.add('tool-active'); };
+  q.addEventListener('focusin', on);
+  q.addEventListener('pointerdown', on);
+  q.addEventListener('input', on);
+  // Se suelta SOLO cuando el modulo sale de vista (scroll), NO con taps sueltos afuera:
+  // tocar el fondo para cerrar el teclado NO debe apagar el blur (era el bug del cotizador).
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(en) { if (en.intersectionRatio < 0.12) document.body.classList.remove('tool-active'); });
+    }, { threshold: [0, 0.12, 0.5] }).observe(q);
+  }
+})();
+
+/* ---------- Fix teclado mobile: dejar el input enfocado por encima del teclado ----------
+   En mobile el teclado virtual reduce el viewport; un input centrado/abajo queda tapado.
+   Al enfocar un campo del simulador, lo traemos a la vista por encima del teclado. */
+(function() {
+  if (!window.visualViewport) return;
+  var active = null;
+  var reposition = function() {
+    if (!active) return;
+    var r = active.getBoundingClientRect();
+    var vh = window.visualViewport.height;
+    if (r.bottom > vh - 16) active.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  };
+  document.addEventListener('focusin', function(e) {
+    var el = e.target;
+    if (el && el.matches && el.matches('.quoter input[type="tel"], .quoter input[type="text"], .quoter input[type="number"]')) {
+      active = el;
+      setTimeout(reposition, 320);
+    }
+  });
+  document.addEventListener('focusout', function() { active = null; });
+  window.visualViewport.addEventListener('resize', reposition);
+})();
+
+/* ---------- Tipo de tela: preview del loop al hover (lazy, desktop) ----------
+   En mobile (sin hover) queda la foto still; el video se baja recién al primer
+   hover (preload=none + data-src). Mismo patrón de swap que el cotizador. */
+(function() {
+  document.querySelectorAll('.sim-fabric-card').forEach(function(card) {
+    var video = card.querySelector('.sim-fabric-card__video');
+    if (!video) return;
+    card.addEventListener('pointerenter', function() {
+      if (!video.src && video.dataset.src) video.src = video.dataset.src;
+      var p = video.play();
+      if (p && p.catch) p.catch(function() {});
+      video.classList.add('is-playing');
+    });
+    card.addEventListener('pointerleave', function() {
+      video.pause();
+      video.classList.remove('is-playing');
+    });
+  });
+})();
+
+
+
+/* ---------- Casos reales: tap/swipe alterna resultado y original ---------- */
+(function() {
+  var toggles = Array.prototype.slice.call(document.querySelectorAll('[data-real-toggle]'));
+  if (!toggles.length) return;
+
+  var setState = function(el, showBefore) {
+    var state = showBefore ? 'before' : 'after';
+    var label = el.parentNode ? el.parentNode.querySelector('[data-real-state]') : null;
+    var room = el.parentNode ? el.parentNode.querySelector('.realsim__room') : null;
+    var beforeImg = el.querySelector('.realsim__img--before[data-real-src]');
+    var roomText = room ? room.textContent.trim() : 'esta ventana';
+
+    if (showBefore && beforeImg) {
+      beforeImg.src = beforeImg.dataset.realSrc;
+      beforeImg.removeAttribute('data-real-src');
+    }
+    el.dataset.state = state;
+    el.classList.remove('has-auto-preview');
+    el.classList.toggle('is-before', showBefore);
+    el.setAttribute('aria-pressed', showBefore ? 'true' : 'false');
+    el.setAttribute('aria-label', showBefore ? ('Ver resultado con cortina de ' + roomText) : ('Ver foto original de ' + roomText));
+    if (label) label.textContent = showBefore ? 'Original' : 'Con cortina';
+  };
+
+  toggles.forEach(function(el) {
+    var pointerId = null;
+    var startX = 0;
+    var startY = 0;
+    var didSwipe = false;
+
+    el.addEventListener('pointerdown', function(e) {
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      startY = e.clientY;
+      didSwipe = false;
+    });
+
+    el.addEventListener('pointermove', function(e) {
+      if (pointerId !== e.pointerId) return;
+      var dx = e.clientX - startX;
+      var dy = e.clientY - startY;
+      if (Math.abs(dx) > 22 && Math.abs(dx) > Math.abs(dy) * 1.2) didSwipe = true;
+    });
+
+    el.addEventListener('pointerup', function(e) {
+      if (pointerId !== e.pointerId) return;
+      pointerId = null;
+      // El swipe horizontal ahora mueve el rail (scroll nativo, ver .realsims__list);
+      // ya no fuerza el flip. Tocar (tap) sigue alternando via el click de abajo.
+      var dx = e.clientX - startX;
+      var dy = e.clientY - startY;
+      if (Math.abs(dx) > 28 && Math.abs(dx) > Math.abs(dy) * 1.2) didSwipe = true;
+    });
+
+    el.addEventListener('click', function(e) {
+      if (didSwipe) {
+        e.preventDefault();
+        didSwipe = false;
+        return;
+      }
+      setState(el, el.dataset.state !== 'before');
+    });
+  });
+})();
+
+/* ---------- Rail de casos reales: fisica sutil (idea 8) ----------
+   Mientras el rail scrollea, las cards inclinan segun la velocidad del swipe
+   (materia, no decoracion); al soltar vuelven a 0 con transicion suave. */
+(function() {
+  var rail = document.querySelector('.realsims__list');
+  if (!rail) return;
+  var MAX_TILT = 1.6; // grados; bajar a 1 si mareara en pruebas reales.
+  var lastX = rail.scrollLeft;
+  var lastT = performance.now();
+  var settleTimer = null;
+
+  rail.addEventListener('scroll', function() {
+    var now = performance.now();
+    var dx = rail.scrollLeft - lastX;
+    var dt = Math.max(now - lastT, 1);
+    var tilt = Math.max(-MAX_TILT, Math.min(MAX_TILT, (dx / dt) * 6));
+    rail.style.setProperty('--rail-tilt', tilt.toFixed(2));
+    lastX = rail.scrollLeft;
+    lastT = now;
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(function() { rail.style.setProperty('--rail-tilt', 0); }, 140);
+  }, { passive: true });
+})();
+
+/* ---------- Footer year ---------- */
+var yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ---------- Alpine state machine ---------- */
+window.simulador = function() {
+  return {
+    step: 1,
+    photoFile: null,
+    photoUrl: null,
+    photoAspect: '4 / 3',
+    isDragOver: false,
+    selectedFamilia: null,
+    selectedFuncion: null,
+    selectedTela: null,
+    selectedTelaId: null,
+    apiBase: '',       // base de la API para el POST de simulación (data-api-base del root)
+    defaultFamilia: '',
+    defaultFuncion: '',
+    funcionesPorFamilia: {},
+    productImages: [],
+    telas: [],
+    // Solo el grupo activo se renderiza: antes iban las ~60 telas al DOM ocultas con x-show.
+    get telasDelGrupo() {
+      var fam = this.selectedFamilia, fn = this.selectedFuncion;
+      if (!fam || !fn) return [];
+      return this.telas.filter(function (t) { return t.familia_slug === fam && t.funcion === fn; });
+    },
+    resultUrl: null,   // URL de la simulación renderizada por la IA (json.data.imagen_url)
+    simError: null,    // error de generación → vuelve al paso 2
+    stepRollerOn: false, // F3.2: overlay de la transición roller entre pasos (ver $watch('step'))
+    _stepRollerTimer: null,
+    _simTimer: null,   // rota los mensajes del loader (espera indeterminada, sin countdown)
+    _flowGuideTimer: null,
+    _flowGuideCleanupTimer: null,
+    lightbox: false,   // simulación ampliada (acción "ampliar")
+    _lightboxLastFocus: null,
+    _lightboxBackground: [],
+    savedSims: [],     // ventanas ya simuladas (multi-ventana). Más ventanas = lead más caliente.
+    sliderPos: 50,
+    compareOriginal: false,
+    comparePreviewing: false,
+    compareTouching: false,
+    _comparePointerId: null,
+    _compareStartX: 0,
+    _compareStartY: 0,
+    _compareDidSwipe: false,
+    ancho: '',
+    alto: '',
+    telefono: '',
+    formStep: 1,
+    sending: false,
+    generating: false,   // la simulación se está generando (animación en la misma pantalla del resultado)
+    formError: null,
+    loadStep: 0,
+    loadSteps: [
+      'Midiendo marco y apertura',
+      'Ajustando luz del ambiente',
+      'Proyectando la tela elegida',
+      'Preparando la vista final',
+    ],
+
+    init() {
+      this.apiBase = (this.$root && this.$root.dataset.apiBase) || '';
+      this.defaultFamilia = (this.$root && this.$root.dataset.defaultFamilia) || 'roller';
+      this.defaultFuncion = (this.$root && this.$root.dataset.defaultFuncion) || '';
+      try {
+        this.funcionesPorFamilia = JSON.parse((this.$root && this.$root.dataset.funcionesPorFamilia) || '{}');
+      } catch {
+        this.funcionesPorFamilia = {};
+      }
+      try {
+        this.productImages = JSON.parse((this.$root && this.$root.dataset.productImages) || '[]');
+      } catch {
+        this.productImages = [];
+      }
+      try {
+        this.telas = JSON.parse((this.$root && this.$root.dataset.telas) || '[]');
+      } catch {
+        this.telas = [];
+      }
+      this.preloadProductImages(1200);
+      // Mobile: cada paso (y sub-paso del form) arranca arriba — si no reseteo el
+      // scroll, el paso nuevo aparece a mitad de pantalla (header/hero ocultos en flujo).
+      var focusLeadInput = () => {
+        if (this.step !== 5 || this.formStep !== 2) return;
+        var input = document.getElementById('sim-telefono-primary');
+        if (!input || document.activeElement === input) return;
+        window.setTimeout(function() {
+          input.focus({ preventScroll: true });
+        }, 80);
+      };
+      var top = () => {
+        requestAnimationFrame(() => {
+          if (window.innerWidth < 980) {
+            window.scrollTo(0, 0);
+            focusLeadInput();
+            return;
+          }
+          var target = document.getElementById('cotizador') || this.$root;
+          var y = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+          focusLeadInput();
+        });
+      };
+      this.$watch('step', top);
+      this.$watch('formStep', top);
+      // F3.2: transición roller entre pasos. Se omite cuando el nuevo paso es la
+      // pantalla de resultado LLEGANDO desde simulate() (generating ya está en true
+      // ahí y trae su propio roller — .sim-gen__roll — no hace falta duplicarlo).
+      this.$watch('step', (value, oldValue) => {
+        if (value === oldValue || (value === 4 && this.generating)) return;
+        this.stepRollerOn = true;
+        clearTimeout(this._stepRollerTimer);
+        // 1200ms = la receta "roller completa" del manual (baja, apoya, descansa y sube).
+        this._stepRollerTimer = setTimeout(() => { this.stepRollerOn = false; }, 1200);
+      });
+      this.$watch('lightbox', (open) => {
+        if (open) {
+          this._lightboxLastFocus = document.activeElement;
+          document.body.classList.add('sim-lightbox-open');
+          this.$nextTick(() => {
+            requestAnimationFrame(() => {
+              this.setLightboxBackground(true);
+              if (this.$refs.lightboxClose) this.$refs.lightboxClose.focus({ preventScroll: true });
+            });
+          });
+        } else {
+          document.body.classList.remove('sim-lightbox-open');
+          this.setLightboxBackground(false);
+          if (this._lightboxLastFocus && typeof this._lightboxLastFocus.focus === 'function') {
+            this._lightboxLastFocus.focus();
+          }
+        }
+      });
+    },
+
+    toggleCompare() {
+      if (this.generating) return;
+      this.comparePreviewing = false;
+      if (this._compareDidSwipe) {
+        this._compareDidSwipe = false;
+        return;
+      }
+      this.compareOriginal = !this.compareOriginal;
+    },
+
+    compareStart(e) {
+      if (this.generating) return;
+      this.comparePreviewing = false;
+      this._comparePointerId = e.pointerId;
+      this._compareStartX = e.clientX;
+      this._compareStartY = e.clientY;
+      this._compareDidSwipe = false;
+      this.compareTouching = true;
+    },
+
+    compareMove(e) {
+      if (this.generating || this._comparePointerId !== e.pointerId) return;
+      const dx = e.clientX - this._compareStartX;
+      const dy = e.clientY - this._compareStartY;
+      if (Math.abs(dx) > 22 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        this._compareDidSwipe = true;
+      }
+    },
+
+    compareEnd(e) {
+      if (this.generating || this._comparePointerId !== e.pointerId) return;
+      const dx = e.clientX - this._compareStartX;
+      const dy = e.clientY - this._compareStartY;
+      this._comparePointerId = null;
+      this.compareTouching = false;
+      if (Math.abs(dx) > 28 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        e.preventDefault();
+        this._compareDidSwipe = true;
+        this.compareOriginal = dx < 0;
+      }
+    },
+
+    compareCancel() {
+      this._comparePointerId = null;
+      this.compareTouching = false;
+    },
+
+    openPicker(refName) {
+      var el = this.$refs[refName];
+      if (el) el.click();
+    },
+
+    trapFocus(e) {
+      var root = e.currentTarget;
+      var focusables = Array.prototype.slice.call(root.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+        .filter(function(el) { return el.offsetParent !== null || el === document.activeElement; });
+      if (!focusables.length) {
+        e.preventDefault();
+        return;
+      }
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    },
+    setLightboxBackground(open) {
+      var box = this.$refs.lightbox;
+      if (!box || !box.parentElement) return;
+      if (open) {
+        this._lightboxBackground = Array.prototype.slice.call(box.parentElement.children)
+          .filter(function(el) { return el !== box; })
+          .map(function(el) {
+            return {
+              el: el,
+              inert: el.inert === true,
+              ariaHidden: el.getAttribute('aria-hidden'),
+            };
+          });
+        this._lightboxBackground.forEach(function(item) {
+          item.el.inert = true;
+          item.el.setAttribute('aria-hidden', 'true');
+        });
+        return;
+      }
+      this._lightboxBackground.forEach(function(item) {
+        item.el.inert = item.inert;
+        if (item.ariaHidden === null) {
+          item.el.removeAttribute('aria-hidden');
+        } else {
+          item.el.setAttribute('aria-hidden', item.ariaHidden);
+        }
+      });
+      this._lightboxBackground = [];
+    },
+    onFileChange(e) {
+      var file = e.target.files?.[0];
+      if (file) this._loadFile(file);
+    },
+    onFileDrop(e) {
+      var file = e.dataTransfer?.files?.[0];
+      if (file && file.type.startsWith('image/')) this._loadFile(file);
+    },
+    preloadImage(src) {
+      if (!src) return Promise.resolve();
+      return new Promise(function(resolve) {
+        var img = new Image();
+        img.onload = function() {
+          if (img.decode) {
+            img.decode().then(resolve).catch(resolve);
+          } else {
+            resolve();
+          }
+        };
+        img.onerror = resolve;
+        img.src = src;
+      });
+    },
+    preloadProductImages(timeoutMs) {
+      var urls = Array.isArray(this.productImages) ? this.productImages.filter(Boolean) : [];
+      if (!urls.length) return Promise.resolve();
+      var preload = Promise.all(urls.map((src) => this.preloadImage(src)));
+      var timeout = new Promise(function(resolve) {
+        window.setTimeout(resolve, timeoutMs || 500);
+      });
+      return Promise.race([preload, timeout]);
+    },
+    _loadFile(file) {
+      if (this.photoUrl) URL.revokeObjectURL(this.photoUrl);
+      this.photoFile = file;
+      this.photoUrl = URL.createObjectURL(file);
+      this.photoAspect = '4 / 3';
+      var photoProbe = new Image();
+      photoProbe.onload = () => {
+        if (photoProbe.naturalWidth > 0 && photoProbe.naturalHeight > 0) {
+          this.photoAspect = `${photoProbe.naturalWidth} / ${photoProbe.naturalHeight}`;
+        }
+      };
+      photoProbe.src = this.photoUrl;
+      this.selectedFamilia = null;
+      this.selectedFuncion = null;
+      this.selectedTela = null;
+      this.selectedTelaId = null;
+      this.preloadProductImages(420).then(() => {
+        this.step = 2;
+        this.$nextTick(() => {
+          this.scrollActiveRail('.sim-telas-grid', 'nearest', 'start');
+          this.keepSelectedTelaAboveCta();
+          window.setTimeout(() => this.keepSelectedTelaAboveCta(), 180);
+          window.setTimeout(() => this.keepSelectedTelaAboveCta(), 520);
+        });
+      });
+    },
+
+    firstFuncionFor(familia) {
+      var list = this.funcionesPorFamilia && this.funcionesPorFamilia[familia];
+      return Array.isArray(list) && list.length ? list[0] : null;
+    },
+
+    onlyFuncionFor(familia) {
+      var list = this.funcionesPorFamilia && this.funcionesPorFamilia[familia];
+      return Array.isArray(list) && list.length === 1 ? list[0] : null;
+    },
+
+    guideToFlow(stepName) {
+      var self = this;
+      window.clearTimeout(this._flowGuideTimer);
+      window.clearTimeout(this._flowGuideCleanupTimer);
+      this.$nextTick(() => {
+        self._flowGuideTimer = window.setTimeout(function() {
+          var targets = Array.prototype.slice.call(document.querySelectorAll('[data-flow-step="' + stepName + '"]'));
+          var target = targets.find(function(el) {
+            var style = window.getComputedStyle(el);
+            var rect = el.getBoundingClientRect();
+            return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+          });
+          if (!target) return;
+
+          document.querySelectorAll('[data-flow-step].is-guided-focus').forEach(function(el) {
+            el.classList.remove('is-guided-focus');
+          });
+          target.classList.remove('is-guided-focus');
+          void target.offsetWidth;
+          target.classList.add('is-guided-focus');
+
+          var targetStyle = window.getComputedStyle(target);
+          var targetRect = target.getBoundingClientRect();
+          var outsideFocusArea = targetRect.top < 64 || targetRect.bottom > window.innerHeight - 24;
+          if (targetStyle.position !== 'fixed' && (window.innerWidth < 980 || outsideFocusArea)) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: stepName === 'cta' ? 'nearest' : 'center',
+              inline: 'nearest',
+            });
+          }
+
+          self._flowGuideCleanupTimer = window.setTimeout(function() {
+            target.classList.remove('is-guided-focus');
+          }, 520);
+        }, 90);
+      });
+    },
+
+    scrollActiveRail(selector, blockMode, inlineMode) {
+      this.$nextTick(() => {
+        var rail = document.querySelector(selector);
+        if (!rail) return;
+        var candidates = Array.prototype.slice.call(rail.querySelectorAll('.is-active, .is-selected'));
+        var active = candidates.find(function(el) {
+          var s = window.getComputedStyle(el);
+          var r = el.getBoundingClientRect();
+          return s.display !== 'none' && s.visibility !== 'hidden' && r.width > 0 && r.height > 0;
+        });
+        if (!active || !rail.scrollTo) return;
+        var railRect = rail.getBoundingClientRect();
+        var activeRect = active.getBoundingClientRect();
+        var currentLeft = rail.scrollLeft + activeRect.left - railRect.left;
+        var targetLeft = currentLeft;
+        if ((inlineMode || 'nearest') === 'center') {
+          targetLeft = currentLeft - ((rail.clientWidth - activeRect.width) / 2);
+        }
+        rail.scrollTo({
+          left: Math.max(0, targetLeft),
+          behavior: 'smooth',
+        });
+      });
+    },
+
+    keepSelectedTelaAboveCta() {
+      this.$nextTick(() => {
+        var selected = document.querySelector('.sim-tela-card.is-selected');
+        if (!selected && this.selectedTelaId) {
+          selected = Array.prototype.slice.call(document.querySelectorAll('.sim-tela-card[data-tela]')).find((el) => {
+            try {
+              return JSON.parse(el.dataset.tela || '{}').id === this.selectedTelaId;
+            } catch (e) {
+              return false;
+            }
+          });
+        }
+        var cta = document.querySelector('.sim-flow-cta--mobile .btn--hero');
+        if (!selected || !cta) return;
+        var ctaRect = cta.getBoundingClientRect();
+        if (ctaRect.width <= 0 || ctaRect.height <= 0) return;
+        var selectedRect = selected.getBoundingClientRect();
+        var safeBottom = ctaRect.top - 14;
+        if (selectedRect.bottom > safeBottom) {
+          var smallViewport = window.innerHeight <= 680;
+          var delta = selectedRect.bottom - safeBottom;
+          var stepHead = document.querySelector('.sim-step-head--pick');
+          if (smallViewport && window.scrollY < 90 && stepHead) {
+            var headRect = stepHead.getBoundingClientRect();
+            delta = Math.min(delta, Math.max(0, headRect.top - 8));
+          }
+          if (delta <= 0) return;
+          window.scrollBy({
+            top: delta,
+            behavior: smallViewport ? 'auto' : 'smooth',
+          });
+        }
+      });
+    },
+
+    selectDefaultTela() {
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.sim-tela-card[data-tela]'));
+      var match = null;
+      for (var i = 0; i < cards.length; i += 1) {
+        try {
+          var data = JSON.parse(cards[i].dataset.tela || '{}');
+          if (data.familia_slug === this.selectedFamilia && data.funcion === this.selectedFuncion) {
+            match = data;
+            break;
+          }
+        } catch (e) {}
+      }
+      if (!match) {
+        this.selectedTela = null;
+        this.selectedTelaId = null;
+        return;
+      }
+      this.selectedTela = match;
+      this.selectedTelaId = match.id;
+      this.$nextTick(() => {
+        this.scrollActiveRail('.sim-telas-grid', 'nearest', 'start');
+      });
+    },
+
+    selectFamilia(familia) {
+      if (this.selectedFamilia === familia) {
+        this.guideToFlow(this.selectedFuncion ? 'color' : 'funcion');
+        return;
+      }
+      this.selectedFamilia = familia;
+      this.selectedFuncion = this.onlyFuncionFor(familia);
+      if (this.selectedFuncion) {
+        this.selectDefaultTela();
+      } else {
+        this.selectedTela = null;
+        this.selectedTelaId = null;
+      }
+      this.scrollActiveRail('.sim-product-rail', 'nearest', 'start');
+      this.scrollActiveRail('.sim-fabric-grid', 'nearest', 'start');
+      this.guideToFlow(this.selectedFuncion ? 'color' : 'funcion');
+    },
+
+    selectFuncion(funcion) {
+      if (this.selectedFuncion === funcion) {
+        this.guideToFlow('color');
+        return;
+      }
+      this.selectedFuncion = funcion;
+      this.selectDefaultTela();
+      this.scrollActiveRail('.sim-fabric-grid', 'nearest', 'start');
+      this.guideToFlow('color');
+    },
+
+    selectTela(telaData) {
+      this.selectedTela = telaData;
+      this.selectedTelaId = telaData.id;
+      this.selectedFamilia = telaData.familia_slug || this.selectedFamilia;
+      this.selectedFuncion = telaData.funcion || this.selectedFuncion;
+      this.scrollActiveRail('.sim-telas-grid', 'nearest', 'center');
+      this.guideToFlow('cta');
+    },
+
+    // Generación REAL via POST /api/v2/simulaciones (Gemini, ~15-21s). Integración de Nico.
+    async simulate() {
+      if (!this.selectedTela || !this.photoFile) return;
+      this.simError = null;
+      // MISMA pantalla del resultado: entramos en modo "generando" (la imagen anima ahi).
+      this.generating = true;
+      this.resultUrl = null;
+      this.loadStep = 0;
+      this.sliderPos = 50;
+      this.compareOriginal = false;
+      this.comparePreviewing = false;
+      this.step = 4;
+      // Mensajes que rotan (INDETERMINADO, sin countdown — no sabemos cuanto tarda).
+      var self = this;
+      this._simTimer = setInterval(function () {
+        self.loadStep = (self.loadStep + 1) % self.loadSteps.length;
+      }, 2600);
+
+      var isPreview = !location.hostname.endsWith('rollershow.com.ar');
+      // PREVIEW: el endpoint real da 403 (sin sesión) → espera demo para ver la animación.
+      if (isPreview) {
+        await new Promise(function (r) { setTimeout(r, 14000); });
+        clearInterval(this._simTimer);
+        this.resultUrl = null;     // mock
+        this.generating = false;
+        this.startComparePreview();
+        return;
+      }
+
+      try {
+        var fd = new FormData();
+        fd.append('foto', this.photoFile);
+        fd.append('tela_id', this.selectedTela.id);
+        fd.append('tipo_cortina', this.selectedFamilia || 'roller');
+        fd.append('familia', this.selectedFamilia || 'roller');
+        var res = await fetch(this.apiBase + '/api/v2/simulaciones', { method: 'POST', body: fd });
+        var json = await res.json();
+        if (!res.ok || !json.data || !json.data.imagen_url) {
+          throw new Error((json.error && json.error.message) || 'No se pudo generar la simulación');
+        }
+        this.resultUrl = json.data.imagen_url;  // la imagen real reemplaza la animación
+        this.generating = false;
+        this.startComparePreview();
+      } catch (e) {
+        // Acá solo se llega same-origin: el preview cross-origin ya retornó con el mock.
+        this.generating = false;
+        this.simError = 'No pudimos generar la simulación. Intentá de nuevo o escribinos por WhatsApp.';
+        this.step = 2;
+      } finally {
+        clearInterval(this._simTimer);
+      }
+    },
+
+    startComparePreview() {
+      this.compareOriginal = false;
+      this.comparePreviewing = true;
+      window.setTimeout(() => { this.comparePreviewing = false; }, 4700);
+    },
+
+    downloadResult() {
+      this._doDownload();
+    },
+
+    // F4 — resultado compartible: compone client-side (canvas nativo) una pieza de
+    // marca en vez de descargar/compartir la foto cruda. 1080x1350 (4:5, WhatsApp/IG):
+    // simulación arriba (85%) + banda Penumbra abajo con wordmark + tela + dominio.
+    // Se genera on-demand (al tocar descargar/compartir), no en cada render.
+    async _composeShareImage() {
+      var srcUrl = this.resultUrl || this.photoUrl;
+      if (!srcUrl) return null;
+      var W = 1080, H = 1350, bandH = Math.round(H * 0.15), photoH = H - bandH;
+      try {
+        // resultUrl viene del CDN: pedimos CORS. Si el CDN no lo habilita, el
+        // canvas queda tainted y el catch de abajo degrada a la imagen cruda.
+        var img = await this._loadImage(srcUrl, this.resultUrl ? 'anonymous' : null);
+        var canvas = document.createElement('canvas');
+        canvas.width = W; canvas.height = H;
+        var ctx = canvas.getContext('2d');
+        this._drawCover(ctx, img, 0, 0, W, photoH);
+
+        ctx.fillStyle = '#1C1816'; // Penumbra (manual 10.2)
+        ctx.fillRect(0, photoH, W, bandH);
+
+        var pad = 56;
+        var cream = '#FAF7F2';
+        var wordmarkImg = await this._loadWordmarkImage(cream);
+        if (wordmarkImg) {
+          var wordmarkH = 34;
+          var ratio = wordmarkImg.width / wordmarkImg.height;
+          ctx.drawImage(wordmarkImg, pad, photoH + 40, wordmarkH * ratio, wordmarkH);
+        } else {
+          // Fallback tipográfico si el SVG inline no rasterizó.
+          ctx.fillStyle = cream;
+          ctx.font = "700 32px 'Bricolage Grotesque', system-ui, sans-serif";
+          ctx.textBaseline = 'alphabetic';
+          ctx.fillText('RollerShow', pad, photoH + 66);
+        }
+
+        var telaName = this.selectedTela?.name || 'tu cortina';
+        ctx.fillStyle = cream;
+        ctx.font = "600 30px 'Manrope', system-ui, sans-serif";
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillText('Simulada con ' + telaName, pad, photoH + 128);
+
+        ctx.fillStyle = 'rgba(250, 247, 242, 0.62)';
+        ctx.font = "400 22px 'Manrope', system-ui, sans-serif";
+        ctx.fillText('rollershow.com.ar', pad, photoH + 168);
+
+        return await new Promise(function (resolve) {
+          canvas.toBlob(function (b) { resolve(b); }, 'image/jpeg', 0.9);
+        });
+      } catch (e) {
+        // CORS/tainted canvas u otro fallo de composición: no rompe el flujo,
+        // quien llame sigue con la imagen cruda.
+        return null;
+      }
+    },
+    _loadImage(url, crossOrigin) {
+      return new Promise(function (resolve, reject) {
+        var img = new Image();
+        if (crossOrigin) img.crossOrigin = crossOrigin;
+        img.onload = function () { resolve(img); };
+        img.onerror = function () { reject(new Error('No se pudo cargar la imagen para componer')); };
+        img.src = url;
+      });
+    },
+    // El wordmark ya está inline como <symbol id="rs-logo"> (mismo documento, sin
+    // fetch externo): lo serializamos a un blob SVG propio (mismo origen, canvas
+    // nunca queda tainted por esto) y lo rasterizamos vía Image.
+    async _loadWordmarkImage(fillColor) {
+      try {
+        var symbolEl = document.getElementById('rs-logo');
+        if (!symbolEl) return null;
+        var markup = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 52">' +
+          symbolEl.innerHTML.replace(/currentColor/g, fillColor) + '</svg>';
+        var blobUrl = URL.createObjectURL(new Blob([markup], { type: 'image/svg+xml' }));
+        try {
+          return await this._loadImage(blobUrl, null);
+        } finally {
+          URL.revokeObjectURL(blobUrl);
+        }
+      } catch (e) {
+        return null;
+      }
+    },
+    _drawCover(ctx, img, x, y, w, h) {
+      var ir = img.width / img.height, tr = w / h, sx, sy, sw, sh;
+      if (ir > tr) { sh = img.height; sw = sh * tr; sy = 0; sx = (img.width - sw) / 2; }
+      else { sw = img.width; sh = sw / tr; sx = 0; sy = (img.height - sh) / 2; }
+      ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+    },
+    async _doDownload() {
+      var blob = await this._composeShareImage();
+      var a = document.createElement('a');
+      if (blob) {
+        a.href = URL.createObjectURL(blob);
+        a.download = 'rollershow-simulacion.jpg';
+      } else {
+        // Degradado: sin composición posible, se descarga la imagen cruda como antes.
+        var color = this.selectedTela?.color ? '-' + this.selectedTela.color.toLowerCase().replace(/\s+/g, '-') : '';
+        var url = this.resultUrl || this.photoUrl;
+        if (!url) return;
+        a.href = url;
+        a.download = 'simulacion-rollershow' + color + '.jpg';
+        a.target = '_blank';
+      }
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      if (blob) setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+    },
+
+    shareUrl() {
+      // wa.me sin número: abre WhatsApp y el cliente elige a quién mandárselo.
+      var tela = this.selectedTela?.name || 'cortina';
+      var msg = '¡Mirá cómo me quedaría esta cortina ' + tela + ' de RollerShow!';
+      if (this.resultUrl) msg += ' ' + this.resultUrl;
+      return 'https://wa.me/?text=' + encodeURIComponent(msg);
+    },
+
+    // Comparte la pieza de marca compuesta (F4): si el navegador soporta compartir
+    // archivos, va la imagen con wordmark + tela ya integrados (loop viral: cada
+    // simulación compartida es un aviso gratis con el producto de un conocido).
+    // Sin soporte de archivos, cae al share de texto+URL de siempre.
+    async shareResult() {
+      var tela = this.selectedTela?.name || 'cortina';
+      var text = 'Mirá cómo quedaría esta cortina ' + tela + ' de RollerShow';
+      var blob = await this._composeShareImage();
+      if (blob && navigator.canShare) {
+        var file = new File([blob], 'rollershow-simulacion.jpg', { type: 'image/jpeg' });
+        if (navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ files: [file], title: 'Simulación RollerShow', text });
+            return;
+          } catch (e) {
+            if (e && e.name === 'AbortError') return;
+          }
+        }
+      }
+      var url = this.resultUrl || window.location.href;
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: 'Simulación RollerShow', text, url });
+          return;
+        } catch (e) {}
+      }
+      window.open(this.shareUrl(), '_blank', 'noopener');
+    },
+
+    saveAndAnother() {
+      if (!this.selectedTela) return;
+      this.savedSims.push({
+        photoUrl: this.photoUrl,
+        photoFile: this.photoFile,
+        photoAspect: this.photoAspect,
+        telaName: this.selectedTela.name,
+        telaColor: this.selectedTela.color || this.selectedTela.name,
+        telaThumb: this.selectedTela.img_thumb,
+        telaId: this.selectedTela.id,
+        familia: this.selectedFamilia,
+        familiaLabel: this.selectedTela.familia_label || this.selectedFamilia,
+        familiaLabelDisplay: this.selectedTela.familia_label_display || this.selectedTela.familia_label || this.selectedFamilia,
+        funcion: this.selectedFuncion,
+        resultUrl: this.resultUrl,
+        ancho: this.ancho,
+        alto: this.alto,
+      });
+      // Importante: NO revocar este blob (lo usa la galería). Lo soltamos del estado actual.
+      this.photoUrl = null;
+      this.photoFile = null;
+      this.photoAspect = '4 / 3';
+      this.selectedFamilia = null;
+      this.selectedFuncion = null;
+      this.selectedTela = null;
+      this.selectedTelaId = null;
+      this.resultUrl = null;
+      this.lightbox = false;
+      this.compareOriginal = false;
+      this.ancho = '';
+      this.alto = '';
+      this.step = 1;
+    },
+
+    // Volver a una simulación guardada (clic en la galería) → la "saca" de la galería,
+    // pasa a ser la actual y abre el resultado para seguir el funnel (descargar/compartir/precio).
+    openSaved(i) {
+      var s = this.savedSims.splice(i, 1)[0];
+      if (!s) return;
+      this.photoUrl = s.photoUrl;
+      this.photoFile = s.photoFile || null;
+      this.photoAspect = s.photoAspect || '4 / 3';
+      this.selectedFamilia = s.familia || this.defaultFamilia || 'roller';
+      this.selectedFuncion = s.funcion;
+      this.selectedTela = { id: s.telaId, name: s.telaName, color: s.telaColor, img_thumb: s.telaThumb, familia_slug: s.familia, familia_label: s.familiaLabel, familia_label_display: s.familiaLabelDisplay };
+      this.selectedTelaId = s.telaId;
+      this.resultUrl = s.resultUrl;
+      this.ancho = s.ancho;
+      this.alto = s.alto;
+      this.lightbox = false;
+      this.sliderPos = 50;
+      this.compareOriginal = false;
+      this.step = 4;
+    },
+
+    // Cuerpo del lead, compartido entre el opt-in de la espera y el form de precio.
+    _leadBody(origen) {
+      // Todas las ventanas simuladas (guardadas + la actual) como contexto rico del lead.
+      var ventanas = this.savedSims.concat(this.selectedTela ? [{
+        telaName: this.selectedTela.name,
+        telaId: this.selectedTela.id,
+        familia: this.selectedFamilia,
+        familiaLabel: this.selectedTela.familia_label || this.selectedFamilia,
+        funcion: this.selectedFuncion,
+        ancho: this.ancho,
+        alto: this.alto,
+      }] : []);
+      return {
+        nombre: null,
+        telefono: this.telefono,
+        origen: origen,
+        tela_id: this.selectedTela?.id ?? null,
+        tipo_cortina: this.selectedFamilia || null,
+        familia: this.selectedFamilia || null,
+        ancho_cm: this.ancho || null,
+        alto_cm: this.alto || null,
+        ventanas_simuladas: ventanas.length,
+        simulaciones: ventanas.map((v) => ({ tipo_cortina: v.familia || null, familia: v.familiaLabel || v.familia || null, funcion: v.funcion || null, tela_id: v.telaId, tela: v.telaName, ancho_cm: v.ancho || null, alto_cm: v.alto || null })),
+        landing_url: window.location.href,
+      };
+    },
+
+    hasMeasures() {
+      return Number(this.ancho) > 0 && Number(this.alto) > 0;
+    },
+
+    goWhatsappStep() {
+      if (!this.hasMeasures()) {
+        this.formError = 'Primero cargá ancho y alto para poder pasarte un precio real.';
+        return;
+      }
+      this.formError = null;
+      this.formStep = 2;
+    },
+
+    async submitForm() {
+      if (!this.hasMeasures()) {
+        this.formError = 'Primero cargá ancho y alto para poder pasarte un precio real.';
+        this.formStep = 1;
+        return;
+      }
+      if (!this.telefono.trim()) return;
+      this.sending = true;
+      this.formError = null;
+      try {
+        var res = await fetch(this.apiBase + '/api/v2/cotizar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this._leadBody('simulador-landing')),
+        });
+        if (res.ok) {
+          // Redirigir a la pagina de gracias (TKP), igual que el cotizador.
+          // Reemplaza el ultimo /simulador del path por /gracias preservando el base.
+          var grUrl = window.location.pathname.replace(/\/simulador\/?$/, '/gracias/');
+          window.location.href = grUrl + '?o=simulador';
+          return;
+        } else {
+          this.formError = 'No pudimos enviar. Intentá de nuevo.';
+        }
+      } catch {
+        this.formError = 'Error de conexión. Intentá de nuevo.';
+      }
+      this.sending = false;
+    },
+  };
+};
+</script>   </body></html>
